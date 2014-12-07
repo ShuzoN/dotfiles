@@ -1,0 +1,129 @@
+#rbenvの初期化設定
+eval "$(rbenv init -)"
+
+#パスを通す
+export PATH=/usr/local/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=/usrtexbin:$PATH
+
+#Railsコマンドの補完
+function railsComp(){
+  if [ -e /usr/local/share/zsh-completions ]; then
+     fpath=(/usr/local/share/zsh-completions $fpath)
+  fi
+}
+zle -N railsComp
+bindkey ^r railsComp 
+# 補完機能を有効にする
+autoload -Uz compinit
+compinit
+#補完候補を一覧で表示する
+setopt auto_list
+#補完キー連打で補完候補を順に表示する
+setopt auto_menu
+# =以降も補完する
+setopt magic_equal_subst
+#Shift-Yabで補完候補を逆順する
+bindkey "^[[Z" reverse-menu-complete"]]"
+#補完時に大文字小文字を区別しない
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+#キーバインドをvimライクにする
+bindkey -v
+#色を出力できるようにする
+autoload colors
+colors
+#カレントディレクトリとユーザ名を２行で表示
+PROMPT="
+ %{${fg[yellow]}%}%~%{${reset_color}%}
+[%n]$ "
+PROMPT2='[%n] ' 
+# cd - で１つ前にいたディレクトリに移動
+setopt auto_pushd
+
+# 重複したディレクトリを追加しない
+setopt pushd_ignore_dups
+ 
+# ディレクトリ名だけでcd
+setopt AUTO_CD
+#j+ディレクトリ名(一部)でディレクトリにジャンプ
+if [ -f `brew --prefix`/etc/autojump ]; then
+  .`brew --prefix`/etc/autojump
+fi
+ 
+#コマンドのスペルを訂正する
+setopt correct
+# lsコマンドの色設定
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
+# グローバルエイリアス
+alias -g L='| less'
+alias -g G='| grep'
+alias -g ls='ls -GF'
+alias -g curl='curl -tlsv1'
+alias -g pyg='pygmentize'
+alias j="autojump"
+alias -g afp='afplay -q 1'
+
+### ヒストリの設定
+source ~/zaw/zaw.zsh
+#ヒストリの保存場所
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+function mkcd(){mkdir -p $1 && cd $1}
+# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
+setopt hist_ignore_all_dups
+# 余分な空白は詰めて記録
+setopt hist_reduce_blanks  
+# 古いコマンドと同じものは無視 
+setopt hist_save_no_dups
+# historyコマンドは履歴に登録しない
+setopt hist_no_store
+# 補完時にヒストリを自動的に展開         
+setopt hist_expand
+# ヒストリを呼び出してから実行する間に一旦編集可能
+setopt hist_verify
+#history一覧の表示
+bindkey '^h' zaw-history
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+ 
+# その他とりあえずいるもの
+export LANG=ja_JP.UTF-8
+ 
+# 日本語ファイル名を表示可能にする
+setopt print_eight_bit
+ 
+# フローコントロールを無効にする
+setopt no_flow_control
+ 
+# '#' 以降をコメントとして扱う
+setopt interactive_comments
+#何も入力せずENTERで ls, git status, git branch
+function do_enter() {
+if [ -n "$BUFFER" ]; then
+  zle accept-line
+  return 0
+fi
+echo
+ls
+echo -e "\e[0;33m--- git branch ---\e[0m"
+git branch
+if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+  echo
+  echo -e "\e[0;33m--- git status ---\e[0m"
+  git status -sb
+fi
+zle reset-prompt
+return 0
+}
+zle -N do_enter
+bindkey '^m' do_enter
+
+ # ネットワークプロキシの設定
+export http_proxy="" #"http://proxy.nagaokaut.ac.jp:8080"
+export https_proxy=$http_proxy
+export all_proxy=$http_proxy
+export use_proxy=yes
+# git config --global http.proxy proxy.nagaokaut.ac.jp:8080
+# git config --global https.proxy proxy.nagaokaut.ac.jp:8080
