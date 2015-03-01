@@ -1,19 +1,16 @@
 #rbenvの初期化設定
-eval "$(rbenv init -)"
-
+#eval "$(rbenv init -)"
 #パスを通す
 export PATH=/usr/local/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=/usrtexbin:$PATH
-
 #Railsコマンドの補完
 function railsComp(){
-  if [ -e /usr/local/share/zsh-completions ]; then
-     fpath=(/usr/local/share/zsh-completions $fpath)
-  fi
+if [ -e /usr/local/share/zsh-completions ]; then
+fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 }
 zle -N railsComp
-bindkey ^r railsComp 
+# bindkey ^r railsComp
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
@@ -34,27 +31,23 @@ autoload colors
 colors
 #カレントディレクトリとユーザ名を２行で表示
 PROMPT="
- %{${fg[yellow]}%}%~%{${reset_color}%}
+%{${fg[yellow]}%}%~%{${reset_color}%}
 [%n]$ "
-PROMPT2='[%n] ' 
+PROMPT2='[%n] '
 # cd - で１つ前にいたディレクトリに移動
 setopt auto_pushd
-
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
- 
 # ディレクトリ名だけでcd
 setopt AUTO_CD
 #j+ディレクトリ名(一部)でディレクトリにジャンプ
 if [ -f `brew --prefix`/etc/autojump ]; then
-  .`brew --prefix`/etc/autojump
+.`brew --prefix`/etc/autojump
 fi
- 
 #コマンドのスペルを訂正する
 setopt correct
 # lsコマンドの色設定
 export LSCOLORS=gxfxcxdxbxegedabagacad
-
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
@@ -63,7 +56,6 @@ alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
 alias j="autojump"
 alias -g afp='afplay -q 1'
-
 ### ヒストリの設定
 source ~/zaw/zaw.zsh
 #ヒストリの保存場所
@@ -74,29 +66,26 @@ function mkcd(){mkdir -p $1 && cd $1}
 # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
 setopt hist_ignore_all_dups
 # 余分な空白は詰めて記録
-setopt hist_reduce_blanks  
-# 古いコマンドと同じものは無視 
+setopt hist_reduce_blanks
+# 古いコマンドと同じものは無視
 setopt hist_save_no_dups
 # historyコマンドは履歴に登録しない
 setopt hist_no_store
-# 補完時にヒストリを自動的に展開         
+# 補完時にヒストリを自動的に展開
 setopt hist_expand
 # ヒストリを呼び出してから実行する間に一旦編集可能
 setopt hist_verify
 #history一覧の表示
 bindkey '^h' zaw-history
 bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
- 
-# その他とりあえずいるもの
+bindkey '^N' history-beginning-seline
+
+#その他とりあえずいるもの
 export LANG=ja_JP.UTF-8
- 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
- 
 # フローコントロールを無効にする
 setopt no_flow_control
- 
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
 #何も入力せずENTERで ls, git status, git branch
@@ -120,10 +109,29 @@ return 0
 zle -N do_enter
 bindkey '^m' do_enter
 
- # ネットワークプロキシの設定
-export http_proxy="" #"http://proxy.nagaokaut.ac.jp:8080"
+# ネットワークプロキシの設定
+# export http_proxy=proxy.nagaokaut.ac.jp:8080
 export https_proxy=$http_proxy
 export all_proxy=$http_proxy
 export use_proxy=yes
 # git config --global http.proxy proxy.nagaokaut.ac.jp:8080
 # git config --global https.proxy proxy.nagaokaut.ac.jp:8080
+
+
+#####################  git 機能 ########################
+# gitコマンドの補完
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+# source /usr/local/etc/bash_completion.d/git-completion.bash
+fpath=(~/.zsh $fpath)
+# source ~/git-completion.zsh
+
+# ブランチ名をterminalに表示
+# GIT_PS1_SHOWDIRTYSTATE=true
+# export PS1='\h\[\033[00m\]:\W\[\033[31m\]$(__git_ps1 [%s])\[\033[00m\]\$ '
+
+#RVMの初期化設定
+export PATH=“$HOME/.rvm/bin:$PATH”
+export PATH=“$HOME/.rvm/scripts:$PATH”
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+

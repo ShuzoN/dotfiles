@@ -12,7 +12,7 @@ endif
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
 """
-" s> , s<でウィンドウの縁を移動させるプラグイン
+" s>,s< でウィンドウの縁を移動させるプラグイン
 NeoBundle 'kana/vim-submode'
 " 直感的なインタフェースを提供するプラグイン
 NeoBundle 'Shougo/unite.vim'
@@ -44,7 +44,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 " ホームポジションに近いキーを使う
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvb1234567890;'
 " 「;」 + 何かにマッピング
-let g:EasyMotion_leader_key=":"
+let g:EasyMotion_leader_key="<Space>"
 " " 1 ストローク選択を優先する
 let g:EasyMotion_grouping=1
 " smartcase
@@ -165,9 +165,9 @@ inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-y>  neocomplcache#close_popup()
 " 候補をキャンセルし、ポップアップを閉じる
 inoremap <expr><C-n>  neocomplcache#cancel_popup()
-" \cでコメントアウトと解除
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
+" Ctrl + / でコメントアウトと解除
+nmap <C-_> <Plug>(caw:i:toggle)
+vmap <C-_> <Plug>(caw:i:toggle)
 " enter で改行挿入
 nmap <CR> i<CR><ESC>
 " -------描画設定---------
@@ -223,7 +223,6 @@ autocmd vimenter * if !argc() | NERDTree | endif
 " ディレクトリツリーを色付
 let g:NERDChristmasTree=1
 " ---------------key bind --------------
-nnoremap <C-j> <ESC>
 " ==== コロンとセミコロンの入れ替え ====
 noremap ; :
 "
@@ -249,5 +248,7 @@ nnoremap r, <C-w><
 nnoremap r+ <C-w>+
 nnoremap r- <C-w>-
 " -------------------------------------------
-
+" 演算子
+noremap  <C-0> ^ 
+" -------------------------------------------
 NeoBundleCheck
