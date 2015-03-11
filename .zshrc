@@ -88,6 +88,17 @@ setopt print_eight_bit
 setopt no_flow_control
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
+
+# ネットワークプロキシの設定
+export http_proxy=http://proxy.nagaokaut.ac.jp:8080
+export https_proxy=$http_proxy
+export all_proxy=$http_proxy
+export use_proxy=yes
+ git config --global http.proxy proxy.nagaokaut.ac.jp:8080
+ git config --global https.proxy proxy.nagaokaut.ac.jp:8080
+
+
+#####################  git 機能 ########################
 #何も入力せずENTERで ls, git status, git branch
 function do_enter() {
 if [ -n "$BUFFER" ]; then
@@ -108,22 +119,13 @@ return 0
 }
 zle -N do_enter
 bindkey '^m' do_enter
-
-# ネットワークプロキシの設定
-# export http_proxy=proxy.nagaokaut.ac.jp:8080
-export https_proxy=$http_proxy
-export all_proxy=$http_proxy
-export use_proxy=yes
-# git config --global http.proxy proxy.nagaokaut.ac.jp:8080
-# git config --global https.proxy proxy.nagaokaut.ac.jp:8080
-
-
-#####################  git 機能 ########################
 # gitコマンドの補完
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 # source /usr/local/etc/bash_completion.d/git-completion.bash
 fpath=(~/.zsh $fpath)
 # source ~/git-completion.zsh
+#hubコマンドをgitコマンドとしてエイリアス(hubはgitの拡張ライブラリ)
+eval "$(hub alias -s)"
 
 # ブランチ名をterminalに表示
 # GIT_PS1_SHOWDIRTYSTATE=true
