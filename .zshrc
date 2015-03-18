@@ -51,38 +51,6 @@ fi
 setopt correct
 # lsコマンドの色設定
 export LSCOLORS=gxfxcxdxbxegedabagacad
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
-alias -g ls='ls -GF'
-alias -g curl='curl -tlsv1'
-alias -g pyg='pygmentize'
-alias j="autojump"
-alias -g afp='afplay -q 1'
-### ヒストリの設定
-source ~/zaw/zaw.zsh
-#ヒストリの保存場所
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-function mkcd(){mkdir -p $1 && cd $1}
-# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
-setopt hist_ignore_all_dups
-# 余分な空白は詰めて記録
-setopt hist_reduce_blanks
-# 古いコマンドと同じものは無視
-setopt hist_save_no_dups
-# historyコマンドは履歴に登録しない
-setopt hist_no_store
-# 補完時にヒストリを自動的に展開
-setopt hist_expand
-# ヒストリを呼び出してから実行する間に一旦編集可能
-setopt hist_verify
-#history一覧の表示
-bindkey '^h' zaw-history
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-seline
-
 #その他とりあえずいるもの
 export LANG=ja_JP.UTF-8
 # 日本語ファイル名を表示可能にする
@@ -91,7 +59,45 @@ setopt print_eight_bit
 setopt no_flow_control
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
+#------------------------------------
+# グローバルエイリアス
+alias -g L='| less'
+alias -g G='| grep'
+alias -g ls='ls -GF'
+alias -g curl='curl -tlsv1'
+alias -g pyg='pygmentize'
+alias j="autojump"
+alias -g afp='afplay -q 1'
 
+
+#--------- ヒストリの設定 ---------
+source ~/zaw/zaw.zsh #zawと呼ばれるプラグイン
+#ヒストリの保存場所
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+function mkcd(){mkdir -p $1 && cd $1}
+# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
+setopt hist_ignore_all_dups
+# spaceで始まるコマンド行はヒストリから削除
+setopt hist_ignore_space
+# 余分な空白は詰めて記録
+setopt hist_reduce_blanks
+# 古いコマンドと同じものは無視
+setopt hist_save_no_dups
+# historyコマンドは履歴に登録しない
+setopt hist_no_store
+# 補完時にヒストリを自動的に展開
+setopt hist_expand
+# 履歴をインクリメンタルに追加
+setopt inc_append_history
+# ヒストリを呼び出してから実行する間に一旦編集可能
+setopt hist_verify
+#history一覧の表示
+bindkey '^h' zaw-history
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+#--------------------------------------
 # ネットワークプロキシの設定
 export http_proxy=http://proxy.nagaokaut.ac.jp:8080
 export https_proxy=$http_proxy
