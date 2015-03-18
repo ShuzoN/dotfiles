@@ -106,7 +106,7 @@ if [ -n "$BUFFER" ]; then
   return 0
 fi
 echo
-ls
+ls -a
 echo -e "\e[0;33m--- git branch ---\e[0m"
 git branch
 if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
