@@ -2,6 +2,11 @@
 set nocompatible
 " クリップボードを有効にする
 set clipboard+=unnamed
+" key bind
+noremap <C-z> <Nop>
+noremap <C-b> <Nop>
+noremap <C-f> <Nop>
+noremap <C-j> <Nop>
 
 filetype off
 
@@ -11,7 +16,15 @@ if has('vim_starting')
 endif
 " ここにインストールしたいプラグインのリストを書く
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 " インデントをハイライト
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors=0
@@ -19,10 +32,34 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=24
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=23
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
-" s>,s< でウィンドウの縁を移動させるプラグイン
-NeoBundle 'kana/vim-submode'
+" ===========  Unite.vim ===================
 " 直感的なインタフェースを提供するプラグイン
 NeoBundle 'Shougo/unite.vim'
+" unite.vimで最近使ったファイルを表示できるようにする
+NeoBundle 'Shougo/neomru.vim'
+" insertモードの時 unite.vimを有効にする
+let g:unite_enable_start_insert=0
+" バッファ一覧
+noremap <C-b> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-f> :Unite -buffer-name=file file<CR>
+" 最近使ったファイル一覧
+noremap <C-z> :Unite file_mru<CR>"
+" sourcesを「今開いているファイルのディレクトリ」とする
+noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+"===========================================
+
+" s>,s< でウィンドウの縁を移動させるプラグイン
+NeoBundle 'kana/vim-submode'
 " 見出し・関数にジャンプ
 NeoBundle 'h1mesuke/unite-outline'
 " テキスト整形ツール
@@ -189,7 +226,6 @@ colorscheme solarized
 let g:solarized_termcolors=256
 " Markdownのソースに色付
 let g:markdown_fenced_languages = [
-      \  'coffee',
       \  'css',
       \  'erb=eruby',
       \  'javascript',
@@ -259,7 +295,6 @@ nnoremap r, <C-w><
 nnoremap r+ <C-w>+
 nnoremap r- <C-w>-
 " -------------------------------------------
-noremap <C-z> <Nop>
 NeoBundleCheck
 
 " ------------ ステータスバー --------------
