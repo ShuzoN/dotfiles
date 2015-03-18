@@ -252,3 +252,14 @@ nnoremap r- <C-w>-
 noremap  <C-0> ^ 
 " -------------------------------------------
 NeoBundleCheck
+
+" ------------ ステータスバー --------------
+" ステータスバーの表示
+set laststatus=2
+" ノーマルモードとinsertモードでステータスバーの色を変える
+" normal mode : lightblue / insert mode: green
+au InsertEnter * hi StatusLine ctermfg=Black ctermbg=lightblue cterm=none 
+au InsertLeave * hi StatusLine ctermfg=Black ctermbg=Green     cterm=none
+" <ESC>後にすぐ色が適応されない場合の対策
+inoremap <silent> <ESC> <ESC>
+inoremap <silent> <C-[> <ESC>
