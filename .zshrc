@@ -11,6 +11,9 @@ fi
 }
 zle -N railsComp
 # bindkey ^r railsComp
+#
+# gitコマンドの補完
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
@@ -119,11 +122,6 @@ return 0
 }
 zle -N do_enter
 bindkey '^m' do_enter
-# gitコマンドの補完
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-# source /usr/local/etc/bash_completion.d/git-completion.bash
-fpath=(~/.zsh $fpath)
-# source ~/git-completion.zsh
 #hubコマンドをgitコマンドとしてエイリアス(hubはgitの拡張ライブラリ)
 eval "$(hub alias -s)"
 
