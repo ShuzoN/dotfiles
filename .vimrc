@@ -1,17 +1,24 @@
 "NeoBundleの設定"
 set nocompatible
+" クリップボードを有効にする
+set clipboard+=unnamed
 
 filetype off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle'))
-
+  call neobundle#begin(expand('~/.vim/bundle'))
 endif
 " ここにインストールしたいプラグインのリストを書く
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-"""
+" インデントをハイライト
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=24
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=23
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
 " s>,s< でウィンドウの縁を移動させるプラグイン
 NeoBundle 'kana/vim-submode'
 " 直感的なインタフェースを提供するプラグイン
@@ -53,8 +60,8 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
 "-----------()系統の補完------------
 " defに対しendを自動補完
-" カッコも補完できる
 NeoBundle "cohama/vim-smartinput-endwise"
+" カッコも補完できる
 NeoBundle "kana/vim-smartinput"
 function! MyInsertBracket(lbrackets, rbracket)
   if index(a:lbrackets, getline('.')[col('.') - 2]) != -1
@@ -69,6 +76,7 @@ NeoBundle 'vimtaku/hl_matchit.vim.git'
 let g:hl_matchit_enable_on_vim_startup = 1
 let g:hl_matchit_hl_groupname = 'Title'
 let g:hl_matchit_allow_ft ='html\|vim\|ruby\|sh'
+" -----------------------------------------
 " 文法チェック機能追加
 NeoBundle 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '/usr/local/project/.rubocop.yml'
@@ -76,6 +84,7 @@ let g:vimrubocop_config = '/usr/local/project/.rubocop.yml'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+" 複数行をコメントアウト可能にする
 NeoBundle 'tyru/caw.vim.git'
 " htmlタグの自動補完(erbファイルに適応)
 augroup MyXML
@@ -91,6 +100,7 @@ augroup END
 NeoBundle 'tyru/open-browser.vim' 
 NeoBundle 'kannokanno/previm'
 :
+call neobundle#end()
 "起動コマンド     :<Space>p
 "プレビュー開始   :<Space>p + o
 "リロード         :<Space>p + r
@@ -104,6 +114,7 @@ nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
 filetype indent on
 filetype plugin on
+
 " neocomplcacheのバグが取れれば嬉しい
 let g:neocomplcache_force_overwrite_completefunc=1
 " ---------tex設定--------------------------
@@ -189,7 +200,7 @@ let g:markdown_fenced_languages = [
       \  'xml',
       \]
 " 行番号を相対位置表示
-set relativenumber
+set number relativenumber 
 " indentの設定
 filetype plugin indent on
 " soft tabを有効に
@@ -248,9 +259,7 @@ nnoremap r, <C-w><
 nnoremap r+ <C-w>+
 nnoremap r- <C-w>-
 " -------------------------------------------
-" 演算子
-noremap  <C-0> ^ 
-" -------------------------------------------
+noremap <C-z> <Nop>
 NeoBundleCheck
 
 " ------------ ステータスバー --------------
