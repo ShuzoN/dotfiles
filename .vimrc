@@ -2,6 +2,8 @@
 set nocompatible
 " クリップボードを有効にする
 set clipboard+=unnamed
+" backspaceを有効にする
+set backspace=indent,eol,start
 " ---------------key bind --------------
 " 間違えやすい, 使わないバインドを無効化
 noremap <C-z> <Nop>
@@ -215,12 +217,11 @@ let g:neocomplcache_dictionary_filetype_lists = {
 
 " -----------vimの補完キーバインド ----------------
 " オムニ補完をcmd-spaceに当てる
-imap <Space-c> <C-x><C-o> 
-
+imap <Space>c <C-x><C-o> 
 " 改行で補完ウィンドを閉じる
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <C-h>や<BS>を押した時に確実にポップアップを削除
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 " tabで補完候補の選択を行う
 inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
