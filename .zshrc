@@ -3,6 +3,7 @@
 #パスを通す
 export PATH=/usr/local/bin:$PATH
 export PATH=/usrtexbin:$PATH
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 #Railsコマンドの補完
 function railsComp(){
 if [ -e /usr/local/share/zsh-completions ]; then
