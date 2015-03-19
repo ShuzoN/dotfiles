@@ -62,7 +62,7 @@ noremap <Space>f :Unite -buffer-name=file file<CR>
 " 最近使ったファイル一覧
 noremap <Space>z :Unite file_mru<CR>"
 " sourcesを「今開いているファイルのディレクトリ」とする
-" noremap <Space>u> :UniteWithBufferDir file -buffer-name=file<CR>
+" noremap <Space>u :UniteWithBufferDir file -buffer-name=file<CR>
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <Space>s unite#do_action('split')
 " au FileType unite inoremap <silent> <buffer> <expr> <Space>s unite#do_action('split')
@@ -220,7 +220,7 @@ imap <Space-c> <C-x><C-o>
 " 改行で補完ウィンドを閉じる
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <C-h>や<BS>を押した時に確実にポップアップを削除
-inoremap <expr>><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 " tabで補完候補の選択を行う
 inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
