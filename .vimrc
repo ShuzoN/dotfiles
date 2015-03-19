@@ -54,10 +54,11 @@ NeoBundle 'Shougo/unite.vim'
 " unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
 " insertモードの時 unite.vimを有効にする
+
 let g:unite_enable_start_insert=0
 " バッファ一覧
 noremap [Unite] <Nop>
-map <Space> [Unite]
+nmap <Space> [Unite]
 noremap [Unite]b :Unite buffer<CR>
 " ファイル一覧
 noremap [Unite]f :Unite -buffer-name=file file<CR>
@@ -228,7 +229,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
 " 補完をキャンセル Ctrl+u
 inoremap <expr><C-u>     neocomplcache#undo_completion()
 " 選択候補の確定
-inoremap <expr><Space>  neocomplcache#close_popup()
+inoremap <expr><C-y>  neocomplcache#close_popup()
 " 候補をキャンセルし、ポップアップを閉じる
 inoremap <expr><ESC>  neocomplcache#cancel_popup()
 " Ctrl + / でコメントアウトと解除
