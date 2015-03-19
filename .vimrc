@@ -2,11 +2,26 @@
 set nocompatible
 " クリップボードを有効にする
 set clipboard+=unnamed
-" key bind
+" backspaceを有効にする
+set backspace=indent,eol,start
+" ---------------key bind --------------
+" 間違えやすい, 使わないバインドを無効化
 noremap <C-z> <Nop>
 noremap <C-b> <Nop>
 noremap <C-f> <Nop>
 noremap <C-j> <Nop>
+noremap <C-n> <Nop>
+noremap <C-p> <Nop>
+noremap <C-c> <Nop>
+noremap <S-h> <Nop>
+noremap <S-l> <Nop>
+nnoremap Q <Nop>
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+" コロンとセミコロンの入れ替え
+noremap ; :
+" enter で改行挿入
+nmap <CR> o<ESC>
 
 filetype off
 
@@ -25,37 +40,41 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-" インデントをハイライト
+" ========  インデントをハイライト ========
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=24
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=23
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
+
 " ===========  Unite.vim ===================
 " 直感的なインタフェースを提供するプラグイン
 NeoBundle 'Shougo/unite.vim'
 " unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
 " insertモードの時 unite.vimを有効にする
+
 let g:unite_enable_start_insert=0
 " バッファ一覧
-noremap <C-b> :Unite buffer<CR>
+noremap [Unite] <Nop>
+nmap <Space> [Unite]
+noremap [Unite]b :Unite buffer<CR>
 " ファイル一覧
-noremap <C-f> :Unite -buffer-name=file file<CR>
+noremap [Unite]f :Unite -buffer-name=file file<CR>
 " 最近使ったファイル一覧
-noremap <C-z> :Unite file_mru<CR>"
+noremap [Unite]z :Unite file_mru<CR>"
 " sourcesを「今開いているファイルのディレクトリ」とする
-noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+" noremap [Unite]u :UniteWithBufferDir file -buffer-name=file<CR>
 " ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> [Unite]s unite#do_action('split')
+" au FileType unite inoremap <silent> <buffer> <expr> [Unite]s unite#do_action('split')
 " ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
+" au FileType unite inoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "===========================================
 
 " s>,s< でウィンドウの縁を移動させるプラグイン
@@ -87,8 +106,8 @@ let g:clever_f_across_no_line=1
 NeoBundle 'Lokaltog/vim-easymotion' 
 " ホームポジションに近いキーを使う
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvb1234567890;'
-" 「;」 + 何かにマッピング
-let g:EasyMotion_leader_key="<Space>"
+" 「m」 + 何かにマッピング
+let g:EasyMotion_leader_key="m"
 " " 1 ストローク選択を優先する
 let g:EasyMotion_grouping=1
 " smartcase
@@ -199,25 +218,23 @@ let g:neocomplcache_dictionary_filetype_lists = {
 
 " -----------vimの補完キーバインド ----------------
 " オムニ補完をcmd-spaceに当てる
-imap <D-Space> <C-x><C-o> 
+imap <Space>c <C-x><C-o> 
 " 改行で補完ウィンドを閉じる
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <C-h>や<BS>を押した時に確実にポップアップを削除
-inoremap <expr>><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 " tabで補完候補の選択を行う
 inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
-" 補完をキャンセル Ctrl+g
-inoremap <expr><C-g>     neocomplcache#undo_completion()
+" 補完をキャンセル Ctrl+u
+inoremap <expr><C-u>     neocomplcache#undo_completion()
 " 選択候補の確定
 inoremap <expr><C-y>  neocomplcache#close_popup()
 " 候補をキャンセルし、ポップアップを閉じる
-inoremap <expr><C-n>  neocomplcache#cancel_popup()
+inoremap <expr><ESC>  neocomplcache#cancel_popup()
 " Ctrl + / でコメントアウトと解除
 nmap <C-_> <Plug>(caw:i:toggle)
 vmap <C-_> <Plug>(caw:i:toggle)
-" enter で改行挿入
-nmap <CR> i<CR><ESC>
 " -------描画設定---------
 "vimの色設定(solarizedを使用)"
 syntax enable
@@ -247,6 +264,8 @@ set autoindent
 set tabstop=2 shiftwidth=2 softtabstop=2
 " 編集行の番号にアンダーライン
 set cursorline
+highlight CursorLine ctermbg=232
+
 " / による検索で
 " 小文字のみの入力では大文字小文字を区別しない
 " 大文字のみの入力では大文字小文字を区別する
@@ -269,32 +288,28 @@ nnoremap <C-e> :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 " ディレクトリツリーを色付
 let g:NERDChristmasTree=1
-" ---------------key bind --------------
-" ==== コロンとセミコロンの入れ替え ====
-noremap ; :
-"
 " ====ウィンドウ操作のキーマップ====
 " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+nnoremap [Tree] <Nop>
 nnoremap r <Nop>
-nnoremap rs :split<Enter>
-nnoremap rv :vsplit<Enter>
-nnoremap rj <C-w>j
-nnoremap rk <C-w>k
-nnoremap rl <C-w>l
-nnoremap rh <C-w>h
-nnoremap rJ <C-w>J
-nnoremap rK <C-w>K
-nnoremap rL <C-w>L
-nnoremap rH <C-w>H
-nnoremap rn gt
-nnoremap rp gT
-nnoremap rr <C-w>r
-nnoremap r= <C-w>=
-nnoremap r. <C-w>>
-nnoremap r, <C-w><
-nnoremap r+ <C-w>+
-nnoremap r- <C-w>-
-" -------------------------------------------
+nmap r [Tree]
+nnoremap <silent> [Tree]s :split<Enter>
+nnoremap <silent> [Tree]v :vsplit<Enter>
+nnoremap <silent> [Tree]j <C-w>j
+nnoremap <silent> [Tree]k <C-w>k
+nnoremap <silent> [Tree]l <C-w>l
+nnoremap <silent> [Tree]h <C-w>h
+nnoremap <silent> [Tree]J <C-w>J
+nnoremap <silent> [Tree]K <C-w>K
+nnoremap <silent> [Tree]L <C-w>L
+nnoremap <silent> [Tree]H <C-w>H
+nnoremap <silent> [Tree]r <C-w>r
+nnoremap <silent> [Tree]= <C-w>=
+nnoremap <silent> [Tree]. <C-w>>
+nnoremap <silent> [Tree], <C-w><
+nnoremap <silent> [Tree]+ <C-w>+
+nnoremap <silent> [Tree]- <C-w>-
+" ------------------------------------------
 NeoBundleCheck
 
 " ------------ ステータスバー --------------
@@ -307,3 +322,52 @@ au InsertLeave * hi StatusLine ctermfg=Black ctermbg=Green     cterm=none
 " <ESC>後にすぐ色が適応されない場合の対策
 inoremap <silent> <ESC> <ESC>
 inoremap <silent> <C-[> <ESC>
+
+" ------------ タブの操作と表示 ------------
+"Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
+
+" The prefix key.
+nnoremap [Tag] <Nop>
+nnoremap t <Nop>
+nnoremap T <Nop>
+nmap <Space> [Tag]
+" Tab jump
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+" tn 新しいタブを一番右に作る
+map <silent> [Tag]n :tablast <bar> tabnew<CR>
+" td タブを閉じる
+map <silent> [Tag]d :tabclose<CR>
+" tl/S-l 次のタブ
+map <silent> [Tag]l :tabnext<CR>
+map <silent> <S-l>  :tabnext<CR>
+" th/S-h 前のタブ
+map <silent> [Tag]h :tabprevious<CR>
+map <silent> <S-h>  :tabprevious<CR>
