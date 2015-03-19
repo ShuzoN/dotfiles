@@ -21,7 +21,7 @@ nnoremap ZQ <Nop>
 " コロンとセミコロンの入れ替え
 noremap ; :
 " enter で改行挿入
-nmap <CR> i<CR><ESC>
+nmap <CR> o<ESC>
 
 filetype off
 
@@ -58,19 +58,19 @@ let g:unite_enable_start_insert=0
 " バッファ一覧
 noremap [Unite] <Nop>
 map <Space> [Unite]
-noremap <Space>b :Unite buffer<CR>
+noremap [Unite]b :Unite buffer<CR>
 " ファイル一覧
-noremap <Space>f :Unite -buffer-name=file file<CR>
+noremap [Unite]f :Unite -buffer-name=file file<CR>
 " 最近使ったファイル一覧
-noremap <Space>z :Unite file_mru<CR>"
+noremap [Unite]z :Unite file_mru<CR>"
 " sourcesを「今開いているファイルのディレクトリ」とする
-" noremap <Space>u :UniteWithBufferDir file -buffer-name=file<CR>
+" noremap [Unite]u :UniteWithBufferDir file -buffer-name=file<CR>
 " ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <Space>s unite#do_action('split')
-" au FileType unite inoremap <silent> <buffer> <expr> <Space>s unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> [Unite]s unite#do_action('split')
+" au FileType unite inoremap <silent> <buffer> <expr> [Unite]s unite#do_action('split')
 " ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <Space>v unite#do_action('vsplit')
-" au FileType unite inoremap <silent> <buffer> <expr> <Space>v unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
+" au FileType unite inoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 " au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -221,14 +221,14 @@ imap <Space>c <C-x><C-o>
 " 改行で補完ウィンドを閉じる
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <C-h>や<BS>を押した時に確実にポップアップを削除
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 " tabで補完候補の選択を行う
 inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
 " 補完をキャンセル Ctrl+u
 inoremap <expr><C-u>     neocomplcache#undo_completion()
 " 選択候補の確定
-inoremap <expr><Enter>  neocomplcache#close_popup()
+inoremap <expr><Space>  neocomplcache#close_popup()
 " 候補をキャンセルし、ポップアップを閉じる
 inoremap <expr><ESC>  neocomplcache#cancel_popup()
 " Ctrl + / でコメントアウトと解除
