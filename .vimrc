@@ -1,4 +1,4 @@
-"NeoBundleの設定"
+"NeoBundleの設定" 
 set nocompatible
 " クリップボードを有効にする
 set clipboard+=unnamed
@@ -40,6 +40,20 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
+" rubyに補完が有効になるようにする
+NeoBundleLazy 'supermomonga/neocomplete-rsense.vim',{'autoload' : {
+ \ 'insert' : 1,
+ \ 'filetypes' : 'ruby',
+ \ }}
+" .や::を入力した時にオムニ補完が有効になるようにする
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+" 環境変数Rsense_homeに/usr/local/bin/rsense'を指定しても動く
+let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
+
 " ========  インデントをハイライト ========
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors=0
@@ -279,8 +293,8 @@ highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
       augroup END
 
 " Tab、行末の半角スペースを明示的に表示する。
-set list
-set listchars=tab:^\ ,trail:~
+" set list
+" set listchars=tab:_\ ,trail:_
 " ---------vimでtreeを使う-------------------------
 nnoremap <C-e> :NERDTreeToggle<CR>
 " ファイルなしならばNERDTREEを起動
