@@ -129,9 +129,7 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
 "-----------()系統の補完------------
 " defに対しendを自動補完
-NeoBundle "cohama/vim-smartinput-endwise"
-" カッコも補完できる
-NeoBundle "kana/vim-smartinput"
+NeoBundle 'tpope/vim-endwise'
 function! MyInsertBracket(lbrackets, rbracket)
   if index(a:lbrackets, getline('.')[col('.') - 2]) != -1
     return a:rbracket . "\<Left>"
@@ -200,8 +198,10 @@ let g:Tex_BibtexFlavor = 'jbibtex'
 let g:Tex_ViewRule_dvi = 'xdvi'
 let g:Tex_ViewRule_pdf = 'evince'
 
-" ---------gitスキーマをhttpsスキーマに変換
+" ------------ vim内でgitを使う -------------
+" gitスキーマをhttpsスキーマに変換
 let g:neobundle_default_git_protocol='https'
+" 
 
 " ---------補完機能の設定--------------------
 " ----------Rubyの補完------------
@@ -218,7 +218,6 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 " アンダースコア区切りの補完を有効化
 let g:neocomplcache_enable_underbar_completion = 1
-" 
 " シンタックスをキャッシュする時の最小文字長 
 let g:neocomplcache_min_syntax_length = 3
 " neocomplcacheと相性の悪いプラグインを使用するときにneocomplcacheをロックする
@@ -233,7 +232,10 @@ let g:neocomplcache_dictionary_filetype_lists = {
 " オムニ補完をSpace-cに当てる
 imap <Space>c <C-x><C-o>
 " 改行で補完ウィンドを閉じる
-inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
 " <C-h>や<BS>を押した時に確実にポップアップを削除
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 " tabで補完候補の選択を行う
