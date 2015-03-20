@@ -54,11 +54,10 @@ NeoBundle 'Shougo/unite.vim'
 " unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
 " insertモードの時 unite.vimを有効にする
-
 let g:unite_enable_start_insert=0
 " バッファ一覧
 noremap [Unite] <Nop>
-nmap <Space> [Unite]
+nmap <Space>u [Unite]
 noremap [Unite]b :Unite buffer<CR>
 " ファイル一覧
 noremap [Unite]f :Unite -buffer-name=file file<CR>
@@ -105,7 +104,7 @@ let g:clever_f_across_no_line=1
 "  :s{char} : 画面内のcharにショートカットを表示
 NeoBundle 'Lokaltog/vim-easymotion' 
 " ホームポジションに近いキーを使う
-let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvb1234567890;'
+let g:EasyMotion_keys='asdfghjkl01234890'
 " 「m」 + 何かにマッピング
 let g:EasyMotion_leader_key="m"
 " " 1 ストローク選択を優先する
@@ -217,8 +216,8 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ }
 
 " -----------vimの補完キーバインド ----------------
-" オムニ補完をcmd-spaceに当てる
-imap <Space>c <C-x><C-o> 
+" オムニ補完をSpace-cに当てる
+imap <Space>c <C-x><C-o>
 " 改行で補完ウィンドを閉じる
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <C-h>や<BS>を押した時に確実にポップアップを削除
@@ -353,10 +352,8 @@ set showtabline=2 " 常にタブラインを表示
 
 " The prefix key.
 nnoremap [Tag] <Nop>
-nnoremap t <Nop>
-nnoremap T <Nop>
-nmap <Space> [Tag]
 " Tab jump
+nmap <Space>t [Tag]
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
@@ -366,8 +363,6 @@ map <silent> [Tag]n :tablast <bar> tabnew<CR>
 " td タブを閉じる
 map <silent> [Tag]d :tabclose<CR>
 " tl/S-l 次のタブ
-map <silent> [Tag]l :tabnext<CR>
 map <silent> <S-l>  :tabnext<CR>
 " th/S-h 前のタブ
-map <silent> [Tag]h :tabprevious<CR>
 map <silent> <S-h>  :tabprevious<CR>
