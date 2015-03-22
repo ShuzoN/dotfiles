@@ -1,6 +1,8 @@
 "NeoBundleの設定" 
+"
+"
 set nocompatible
-" クリップボードを有効にする
+" クリップボードを有効にする 
 set clipboard+=unnamed
 " backspaceを有効にする
 set backspace=indent,eol,start
@@ -13,6 +15,7 @@ noremap <C-j> <Nop>
 noremap <C-n> <Nop>
 noremap <C-p> <Nop>
 noremap <C-c> <Nop>
+noremap <C-m> <Nop>
 noremap <S-h> <Nop>
 noremap <S-l> <Nop>
 nnoremap Q <Nop>
@@ -29,7 +32,9 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
   call neobundle#begin(expand('~/.vim/bundle'))
 endif
-" ここにインストールしたいプラグインのリストを書く
+" ==============================================
+  "           NeoBundle プラグイン
+" ==============================================
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
@@ -45,15 +50,6 @@ NeoBundleLazy 'supermomonga/neocomplete-rsense.vim',{'autoload' : {
  \ 'insert' : 1,
  \ 'filetypes' : 'ruby',
  \ }}
-" .や::を入力した時にオムニ補完が有効になるようにする
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-" 環境変数Rsense_homeに/usr/local/bin/rsense'を指定しても動く
-let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
-
 " ========  インデントをハイライト ========
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors=0
@@ -160,14 +156,13 @@ augroup MyXML
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
-" ----------markdown--------------------------------
+" ---------- markdownをブラウザでプレビュー --------------------------------
 " PreVim(markdownをブラウザでリアルタイムプレビューする)
 " <space>+p o : プレビュー
 " <space>+p r : リロード
 NeoBundle 'tyru/open-browser.vim' 
 NeoBundle 'kannokanno/previm'
 :
-call neobundle#end()
 "起動コマンド     :<Space>p
 "プレビュー開始   :<Space>p + o
 "リロード         :<Space>p + r
@@ -178,10 +173,88 @@ nmap <Space>p [previm]
 nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 nnoremap <silent> [previm]r :call previm#refresh()<CR>
 "----------------------------
+"
+" -------------------------------------
+" status line を拡張する
+" -------------------------------------
+NeoBundle 'itchyny/lightline.vim' 
+" vim内でgitを操作可能に
+NeoBundle 'tpope/vim-fugitive'
+" gitの差分を表示する
+NeoBundle 'airblade/vim-gitgutter'
+" vim-gitgutter
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified= '→'
+let g:gitgutter_sign_removed = 'x'
 
-filetype indent on
-filetype plugin on
+" LightLine.vim
+let g:lightline = {
+  \ 'mode_map' : {'c' : 'NORMAL' },
+  \ 'active'  : {
+  \ 'left':[
+  \   ['mode','paste'],
+  \   ['fugitive','gitgutter','filename'],
+  \ ],
+  \ 'right': [
+  \   ['lineinfo','syntastic'],
+  \   ['percent'],
+  \   ['charcode', 'fileformat', 'fileencoding', 'filetype'],
+  \ ]
+  \ },
+  \ 'component_function': {
+  \ 'modefied' : 'MyModified',
+  \ 'readonly' : 'MyReadonly',
+  \ 'fugitive' : 'MyFugitive',
+  \ 'filename' : 'MyFilename',
+  \ 'fileformat' : 'MyFileformat',
+  \ 'filetype' : 'MyFiletype',
+  \ 'fileencoding' : 'MyFileencoding',
+  \ 'mode' : 'MyMode',
+  \ }
+  \ }
 
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+\ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+\  &ft == 'unite' ? unite#get_status_string() :
+\  &ft == 'vimshell' ? vimshell#get_status_string() :
+\ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+\ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+" -------------------------------------
+
+call neobundle#end()
 " neocomplcacheのバグが取れれば嬉しい
 let g:neocomplcache_force_overwrite_completefunc=1
 " ---------tex設定--------------------------
@@ -205,6 +278,14 @@ let g:neobundle_default_git_protocol='https'
 
 " ---------補完機能の設定--------------------
 " ----------Rubyの補完------------
+" ruby .や::を入力した時にオムニ補完が有効になるようにする
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+" 環境変数Rsense_homeに/usr/local/bin/rsense'を指定しても動く
+let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
 " RSense(rubyの補完)のHOMEを指定する
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec/"
 " ----------Vimの補完------------
@@ -227,7 +308,6 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
-
 " -----------vimの補完キーバインド ----------------
 " オムニ補完をSpace-cに当てる
 imap <Space>c <C-x><C-o>
