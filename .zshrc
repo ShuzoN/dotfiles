@@ -109,7 +109,7 @@ export use_proxy=yes
 
 
 #####################  git 機能 ########################
-#何も入力せずENTERで ls, git status, git branch
+#何も入力せずenterで ls, git status, git branch
 function do_enter() {
 if [ -n "$BUFFER" ]; then
   zle accept-line
@@ -119,9 +119,9 @@ echo
 ls -a
 echo -e "\e[0;33m--- git branch ---\e[0m"
 git branch
+echo -e "\e[0;33m--- git status ---\e[0m"
+git status -sb
 if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-  echo
-  echo -e "\e[0;33m--- git status ---\e[0m"
   git status -sb
 fi
 zle reset-prompt
@@ -129,6 +129,7 @@ return 0
 }
 zle -N do_enter
 bindkey '^m' do_enter
+
 #hubコマンドをgitコマンドとしてエイリアス(hubはgitの拡張ライブラリ)
 eval "$(hub alias -s)"
 
