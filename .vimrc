@@ -1,8 +1,6 @@
 "NeoBundleの設定" 
-"
-"
 set nocompatible
-" クリップボードを有効にする 
+" クリップボードを使用可能に
 set clipboard+=unnamed
 " backspaceを有効にする
 set backspace=indent,eol,start
@@ -45,11 +43,31 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-" rubyに補完が有効になるようにする
+" === rubyに補完が有効になるようにする ====
 NeoBundleLazy 'supermomonga/neocomplete-rsense.vim',{'autoload' : {
  \ 'insert' : 1,
  \ 'filetypes' : 'ruby',
  \ }}
+" === scssのシンタックスハイライト ========
+NeoBundle 'cakebaker/scss-syntax.vim'
+au BufRead,BufNewFile *.scss set filetype=scss.css
+
+" === Railsプロジェクト間のfile移動をワンアクションで可能にする ===
+NeoBundle 'tpope/vim-rails'
+" :R 対応するmvcに移動
+" :A テストに移動
+
+" === コマンドを独自のものに置換できるコマンド ===
+" :Rなどshift押すのがめんどいので:rに置き換える
+NeoBundle 'tyru/vim-altercmd' 
+" call  altercmd#load()
+au BufRead *.* AlterCommand ni NeoBundleInstall
+" tyru/はフォーク版, オリジナルはkana/
+autocmd User Rails AlterCommand r R " 対応したmvcに移動
+autocmd User Rails AlterCommand rc Rcontroller "対応するコントローラに移動
+autocmd User Rails AlterCommand rm Rmodel  " モデルに移動
+autocmd User Rails AlterCommand rv Rview  " ビューに移動
+autocmd User Rails AlterCommand ra A  " テストに移動
 " ========  インデントをハイライト ========
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors=0
@@ -174,12 +192,25 @@ nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 nnoremap <silent> [previm]r :call previm#refresh()<CR>
 "----------------------------
 "
-" -------------------------------------
+" === status lineにgitのブランチを表示 ===
 " status line を拡張する
-" -------------------------------------
 NeoBundle 'itchyny/lightline.vim' 
-" vim内でgitを操作可能に
+" vim内でgitを操作可能
 NeoBundle 'tpope/vim-fugitive'
+au FileType gitcommit nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType gitcommit inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+au FileType fugitiveblame nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au BufRead *.* AlterCommand ga :Gwrite  " 編集ファイルをgit add
+au BufRead *.* AlterCommand gr :Gread   " 編集ファイルをgit reset/ 戻すのは :w
+au BufRead *.* AlterCommand gd :Gdiff   " 編集ファイルをgit diff
+"   - : add/resetの切り替え
+"   D : diff表示
+"   C : コミット
+"   Enter : ファイルの内容を表示
+au BufRead *.* AlterCommand gs Gstatus " 編集ファイルをgit status
+"   変更箇所でdp  : その差分をgit add
+" 詳しい操作は http://karur4n.hatenablog.com/entry/2014/08/19/161320
+
 " gitの差分を表示する
 NeoBundle 'airblade/vim-gitgutter'
 " vim-gitgutter
