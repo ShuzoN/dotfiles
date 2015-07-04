@@ -101,6 +101,7 @@ bindkey '^N' history-beginning-search-forward
 #--------------------------------------
 # ネットワークプロキシの設定
 export http_proxy=http://proxy.nagaokaut.ac.jp:8080
+# export http_proxy=""
 export https_proxy=$http_proxy
 export all_proxy=$http_proxy
 export use_proxy=yes
@@ -143,3 +144,4 @@ export PATH=“$HOME/.rvm/scripts:$PATH”
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 
+export PGDATA=/usr/local/var/postgres

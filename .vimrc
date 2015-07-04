@@ -16,8 +16,6 @@ noremap <C-c> <Nop>
 noremap <C-m> <Nop>
 noremap <S-h> <Nop>
 noremap <S-l> <Nop>
-nnoremap Q <Nop>
-nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 " コロンとセミコロンの入れ替え
 noremap ; :
@@ -414,8 +412,7 @@ nnoremap <C-e> :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 " ディレクトリツリーを色付
 let g:NERDChristmasTree=1
-" ====ウィンドウ操作のキーマップ====
-" http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+" ====ウィンドウ操作のキーマップ==== " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
 nnoremap [Tree] <Nop>
 nnoremap r <Nop>
 nmap r [Tree]
