@@ -3,15 +3,16 @@
 #パスを通す
 export PATH=/usr/local/bin:$PATH
 export PATH=/usrtexbin:$PATH
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+
 #Railsコマンドの補完
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 function railsComp(){
 if [ -e /usr/local/share/zsh-completions ]; then
 fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 }
 zle -N railsComp
-# bindkey ^r railsComp
+bindkey ^r railsComp
 #
 # gitコマンドの補完
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
@@ -33,11 +34,47 @@ bindkey -v
 #色を出力できるようにする
 autoload colors
 colors
-#カレントディレクトリとユーザ名を２行で表示
+# PROMPTを表示
+Currentmode=""
+##プロンプトの表示毎にプロンプト文字列を再評価
+setopt prompt_subst 
+function zle-line-init zle-keymap-select {
+local color mode #ローカル変数宣言
+case $KEYMAP in
+  vicmd)
+    color=${fg[yellow]}
+    mode='nor'
+    ;;
+  main|viins)
+    color=${fg[cyan]}
+    mode='ins'
+    ;;
+esac
+Currentmode="$color$mode$reset_color"
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%}
-[%n]$ "
-PROMPT2='[%n] '
+[%n/$Currentmode] %{$fg_bold[yellow]%} %~%{$reset_color%}
+$ "
+PROMPT2="
+$ "
+RPROMPT=""
+#コマンド実行時に右プロンプトを消す# cd - で１つ前にいたディレクトリに移動
+setopt transient_rprompt 
+#補完の時プロンプトの位置を変えない
+setopt always_last_prompt 
+#cd tabキーで過去に移動したディレクトリを表示
+setopt auto_pushd
+
+alias ls='ls -GF'
+
+
+#カレントディレクトリとユーザ名を２行で表示
+# PROMPT="
+# %{${fg[yellow]}%}%~%{${reset_color}%}
+# [%n]$ "
+# PROMPT2='[%n] '
 # cd - で１つ前にいたディレクトリに移動
 setopt auto_pushd
 # 重複したディレクトリを追加しない
@@ -84,7 +121,7 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 # 余分な空白は詰めて記録
 setopt hist_reduce_blanks
-# 古いコマンドと同じものは無視
+# 同じコマンドは無視
 setopt hist_save_no_dups
 # historyコマンドは履歴に登録しない
 setopt hist_no_store
@@ -94,19 +131,22 @@ setopt hist_expand
 setopt inc_append_history
 # ヒストリを呼び出してから実行する間に一旦編集可能
 setopt hist_verify
+# 高機能なワイルドカード展開を使用する
+setopt extended_glob
+
 #history一覧の表示
 bindkey '^h' zaw-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 #--------------------------------------
 # ネットワークプロキシの設定
-export http_proxy=http://proxy.nagaokaut.ac.jp:8080
-# export http_proxy=""
+# export http_proxy=http://proxy.nagaokaut.ac.jp:8080
+export http_proxy=""
 export https_proxy=$http_proxy
 export all_proxy=$http_proxy
 export use_proxy=yes
- git config --global http.proxy proxy.nagaokaut.ac.jp:8080
- git config --global https.proxy proxy.nagaokaut.ac.jp:8080
+ # git config --global http.proxy proxy.nagaokaut.ac.jp:8080
+ # git config --global https.proxy proxy.nagaokaut.ac.jp:8080
 
 
 #####################  git 機能 ########################
