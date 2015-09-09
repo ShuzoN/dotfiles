@@ -21,6 +21,8 @@
  noremap ; :
  " enter で改行挿入
  nmap <CR> o<ESC>
+ " 複数キー入力待機は200ms, キーコード待は75ms
+ set timeout timeoutlen=150 ttimeoutlen=75
 
  filetype off
 
