@@ -1,24 +1,16 @@
 #rbenvの初期化設定
-#eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 #パスを通す
 export PATH=/usr/local/bin:$PATH
-export PATH=/usrtexbin:$PATH
-
+export PATH=/usr/bin:$PATH
+export DOTSDIR=${HOME}/dotfiles
 #Railsコマンドの補完
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-function railsComp(){
-if [ -e /usr/local/share/zsh-completions ]; then
-fpath=(/usr/local/share/zsh-completions $fpath)
-fi
-}
-zle -N railsComp
-bindkey ^r railsComp
-#
+fpath=($(brew --prefix)/share/zsh-completions $fpath)
 # gitコマンドの補完
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 # 補完機能を有効にする
 autoload -Uz compinit
-compinit
+compinit -u
 #補完候補を一覧で表示する
 setopt auto_list
 #補完キー連打で補完候補を順に表示する
@@ -34,15 +26,23 @@ bindkey -v
 #色を出力できるようにする
 autoload colors
 colors
-# PROMPTを表示
-Currentmode=""
 ##プロンプトの表示毎にプロンプト文字列を再評価
 setopt prompt_subst 
+# PROMPTを表示
 function zle-line-init zle-keymap-select {
+set_prompt
+echo #reset-promptすると1行上にずれるのでechoで調整
+zle && zle reset-prompt #プロンプト再描画
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+#zshのviモードをPROMPTに表示
+function vi_mode_prompt(){
 local color mode #ローカル変数宣言
 case $KEYMAP in
   vicmd)
-    color=${fg[yellow]}
+    color=${fg[green]}
     mode='nor'
     ;;
   main|viins)
@@ -50,16 +50,25 @@ case $KEYMAP in
     mode='ins'
     ;;
 esac
-Currentmode="$color$mode$reset_color"
+echo "$color$mode$reset_color"
 }
-zle -N zle-line-init
-zle -N zle-keymap-select
-PROMPT="
-[%n/$Currentmode] %{$fg_bold[yellow]%} %~%{$reset_color%}
-$ "
-PROMPT2="
-$ "
-RPROMPT=""
+#promptを書く
+function set_prompt(){
+  PROMPT="
+  [%n:$(vi_mode_prompt)] %{$fg_bold[yellow]%} %~%{$reset_color%}
+  $ "
+  PROMPT2=$PROMPT
+RPROMPT="%1(v|%F{green}%1v%f|)"
+}
+#RPROMPTにgit branchを表示させる
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '[%s:%b]'
+zstyle ':vcs_info:*' actionformats '[%s:%b]'
+precmd(){
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info 
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
 #コマンド実行時に右プロンプトを消す# cd - で１つ前にいたディレクトリに移動
 setopt transient_rprompt 
 #補完の時プロンプトの位置を変えない
@@ -67,14 +76,6 @@ setopt always_last_prompt
 #cd tabキーで過去に移動したディレクトリを表示
 setopt auto_pushd
 
-alias ls='ls -GF'
-
-
-#カレントディレクトリとユーザ名を２行で表示
-# PROMPT="
-# %{${fg[yellow]}%}%~%{${reset_color}%}
-# [%n]$ "
-# PROMPT2='[%n] '
 # cd - で１つ前にいたディレクトリに移動
 setopt auto_pushd
 # 重複したディレクトリを追加しない
@@ -83,7 +84,7 @@ setopt pushd_ignore_dups
 setopt AUTO_CD
 #j+ディレクトリ名(一部)でディレクトリにジャンプ
 if [ -f `brew --prefix`/etc/autojump ]; then
-.`brew --prefix`/etc/autojump
+  .`brew --prefix`/etc/autojump
 fi
 #コマンドのスペルを訂正する
 setopt correct
@@ -101,7 +102,7 @@ setopt interactive_comments
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
-alias -g ls='ls -GF'
+alias ls='ls -GF'
 alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
 alias j="autojump"
@@ -140,14 +141,14 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 #--------------------------------------
 # ネットワークプロキシの設定
+source "$DOTSDIR/set_proxy_by_networksetup.sh"
 # export http_proxy=http://proxy.nagaokaut.ac.jp:8080
-export http_proxy=""
-export https_proxy=$http_proxy
-export all_proxy=$http_proxy
-export use_proxy=yes
- # git config --global http.proxy proxy.nagaokaut.ac.jp:8080
- # git config --global https.proxy proxy.nagaokaut.ac.jp:8080
-
+# export http_proxy=""
+# export https_proxy=$http_proxy
+# export all_proxy=$http_proxy
+# export use_proxy=yes
+# git config --global http.proxy proxy.nagaokaut.ac.jp:8080
+# git config --global https.proxy proxy.nagaokaut.ac.jp:8080
 
 #####################  git 機能 ########################
 #何も入力せずenterで ls, git status, git branch
@@ -174,14 +175,5 @@ bindkey '^m' do_enter
 #hubコマンドをgitコマンドとしてエイリアス(hubはgitの拡張ライブラリ)
 eval "$(hub alias -s)"
 
-# ブランチ名をterminalに表示
-# GIT_PS1_SHOWDIRTYSTATE=true
-# export PS1='\h\[\033[00m\]:\W\[\033[31m\]$(__git_ps1 [%s])\[\033[00m\]\$ '
-
-#RVMの初期化設定
-export PATH=“$HOME/.rvm/bin:$PATH”
-export PATH=“$HOME/.rvm/scripts:$PATH”
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-
+#postgresqlのパス設定
 export PGDATA=/usr/local/var/postgres
