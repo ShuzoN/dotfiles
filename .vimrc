@@ -16,6 +16,7 @@
  noremap <C-m> <Nop>
  noremap <S-h> <Nop>
  noremap <S-l> <Nop>
+ nnoremap s <Nop>
  nnoremap ZQ <Nop>
  " コロンとセミコロンの入れ替え
  noremap ; :
@@ -132,9 +133,9 @@
  "  :s{char} : 画面内のcharにショートカットを表示
  NeoBundle 'Lokaltog/vim-easymotion' 
  " ホームポジションに近いキーを使う
- let g:EasyMotion_keys='asdfghjkl01234890'
+ let g:EasyMotion_keys='asdfghjkl'
  " 「m」 + 何かにマッピング
- let g:EasyMotion_leader_key="m"
+ let g:EasyMotion_leader_key='m'
  " " 1 ストローク選択を優先する
  let g:EasyMotion_grouping=1
  " smartcase
@@ -186,7 +187,7 @@
  "プレビュー開始   :<Space>p + o
  "リロード         :<Space>p + r
  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
- let g:previm_open_cmd = ''
+ let g:previm_open_cmd = '<Space>'
  nnoremap [previm] <Nop>
  nmap <Space>p [previm]
  nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
