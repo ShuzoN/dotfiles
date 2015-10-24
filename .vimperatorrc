@@ -1,1 +1,46 @@
-/Users/nakamura_mac/dotfiles/.vimperatorrc
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+source! /Users/nakamura_mac/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+
+" shift+jkに矢印キー上下を割り当て
+noremap J <Down>
+noremap K <Up>
+
+" jkに全ページスクロールを割り当て
+noremap j <Space>
+noremap k <S-Space>
+
+" shift+hlにタブ移動を割り当て
+noremap L <C-n>
+noremap H <C-p>
+
+" hlにページのバック/フォアードを割り当て
+noremap h <C-o>
+noremap l <C-i>
+
+" ---------------
+" [ or ] で次のページ, 前のページと書かれたリンクに遷移する
+set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,次へ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
+set previouspattern=\bprev|previous\b,prev,^前(の)?ページ,前へ,\b前.*,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)
+
+" ---------------
+" qmarks
+" 使用方法
+" g o g で現在タブでgithubを開く
+" g n g で新規タブでgithubを開く
+
+qmark g https://github.com/ShuzoN
+qmark m https://mail.google.com/
+qmark c https://calendar.google.com/calendar/
+qmark n http://news.yahoo.co.jp/
+qmark t https://trello.com/
+qmark y https://www.youtube.com/ 
+" ---------------
+
+" ブラウザ上でExモードを起動し,
+" source ~/.vimperator
+" と打つか
+" ブラウザを再起動して変更を適応
+
