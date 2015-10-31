@@ -31,7 +31,6 @@ setopt prompt_subst
 # PROMPTを表示
 function zle-line-init zle-keymap-select {
 set_prompt
-echo #reset-promptすると1行上にずれるのでechoで調整
 zle && zle reset-prompt #プロンプト再描画
 }
 zle -N zle-line-init
