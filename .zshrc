@@ -135,6 +135,9 @@ setopt hist_verify
 setopt extended_glob
 
 #history一覧の表示
+zle -N zaw-history
+zle -N history-beginning-search-backward
+zle -N history-beginning-search-forward
 bindkey '^h' zaw-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
