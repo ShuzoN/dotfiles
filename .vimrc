@@ -16,14 +16,13 @@
  noremap <C-m> <Nop>
  noremap <S-h> <Nop>
  noremap <S-l> <Nop>
- nnoremap s <Nop>
  nnoremap ZQ <Nop>
  " コロンとセミコロンの入れ替え
  noremap ; :
  " enter で改行挿入
  nmap <CR> o<ESC>
  " 複数キー入力待機は200ms, キーコード待は75ms
- set timeout timeoutlen=150 ttimeoutlen=75
+ set timeout timeoutlen=200 ttimeoutlen=75
 
  filetype off
 
@@ -35,6 +34,7 @@
    "           NeoBundle プラグイン
  " ==============================================
  NeoBundle 'Shougo/neobundle.vim'
+ NeoBundle 'h1mesuke/vim-alignta' 
  NeoBundle 'Shougo/vimproc.vim', {
  \ 'build' : {
  \     'windows' : 'tools\\update-dll-mingw',
@@ -133,9 +133,9 @@
  "  :s{char} : 画面内のcharにショートカットを表示
  NeoBundle 'Lokaltog/vim-easymotion' 
  " ホームポジションに近いキーを使う
- let g:EasyMotion_keys='asdfghjkl'
+ let g:EasyMotion_keys='asdfghjkl01234890'
  " 「m」 + 何かにマッピング
- let g:EasyMotion_leader_key='m'
+ let g:EasyMotion_leader_key="m"
  " " 1 ストローク選択を優先する
  let g:EasyMotion_grouping=1
  " smartcase
@@ -182,12 +182,22 @@
  " <space>+p r : リロード
  NeoBundle 'tyru/open-browser.vim' 
  NeoBundle 'kannokanno/previm'
+" NeoBundle 'thinca/vim-quickrun'
+" NeoBundle 'mattn/webapi-vim'
+" NeoBundle 'tyru/open-browser.vim'
  :
+ " let g:quickrun_config = {
+ "       \   'markdown': {
+ "       \     'type': 'markdown/gfm',
+ "       \     'outputter': 'browser'
+ "       \   }
+ "       \ }
  "起動コマンド     :<Space>p
+ "
  "プレビュー開始   :<Space>p + o
  "リロード         :<Space>p + r
  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
- let g:previm_open_cmd = '<Space>'
+ let g:previm_open_cmd='open -a Firefox'
  nnoremap [previm] <Nop>
  nmap <Space>p [previm]
  nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
@@ -343,7 +353,7 @@
      \ }
  " -----------vimの補完キーバインド ----------------
  " オムニ補完をSpace-cに当てる
- imap <Space>c <C-x><C-o>
+ " imap <Space>c <C-x><C-o>
  " 改行で補完ウィンドを閉じる
  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
  function! s:my_cr_function()
@@ -436,6 +446,8 @@
  nnoremap <silent> [Tree], <C-w><
  nnoremap <silent> [Tree]+ <C-w>+
  nnoremap <silent> [Tree]- <C-w>-
+ nmap <Space> <Nop>
+
  " ------------------------------------------
  NeoBundleCheck
 
@@ -494,3 +506,4 @@
  map <silent> <S-l>  :tabnext<CR>
  " th/S-h 前のタブ
  map <silent> <S-h>  :tabprevious<CR>
+
