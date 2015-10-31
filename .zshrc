@@ -53,16 +53,16 @@ echo "$color$mode$reset_color"
 }
 #promptを書く
 function set_prompt(){
-  PROMPT="
-  [%n:$(vi_mode_prompt)] %{$fg_bold[yellow]%} %~%{$reset_color%}
-  $ "
-  PROMPT2=$PROMPT
+PROMPT="
+[%n:$(vi_mode_prompt)] %{$fg_bold[yellow]%} %~%{$reset_color%}
+$ "
+PROMPT2=$PROMPT
 RPROMPT="%1(v|%F{green}%1v%f|)"
 }
 #RPROMPTにgit branchを表示させる
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '[%s:%b]'
-zstyle ':vcs_info:*' actionformats '[%s:%b]'
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b]'
 precmd(){
   psvar=()
   LANG=en_US.UTF-8 vcs_info 
