@@ -182,16 +182,6 @@
  " <space>+p r : リロード
  NeoBundle 'tyru/open-browser.vim' 
  NeoBundle 'kannokanno/previm'
-" NeoBundle 'thinca/vim-quickrun'
-" NeoBundle 'mattn/webapi-vim'
-" NeoBundle 'tyru/open-browser.vim'
- :
- " let g:quickrun_config = {
- "       \   'markdown': {
- "       \     'type': 'markdown/gfm',
- "       \     'outputter': 'browser'
- "       \   }
- "       \ }
  "起動コマンド     :<Space>p
  "
  "プレビュー開始   :<Space>p + o
