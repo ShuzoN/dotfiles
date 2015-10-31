@@ -141,6 +141,12 @@ zle -N history-beginning-search-forward
 bindkey '^h' zaw-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+
+#------------------------------------
+# tmuxのsession一覧を追加
+zle -N zaw-tmux
+bindkey '^t' zaw-tmux
+
 #--------------------------------------
 # ネットワークプロキシの設定
 source "$DOTSDIR/set_proxy_by_networksetup.sh"
