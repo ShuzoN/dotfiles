@@ -1,7 +1,7 @@
 #rbenvの初期化設定
 eval "$(rbenv init -)"
 #パスを通す
-export PATH=/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$PATH"
 export PATH=/usr/bin:$PATH
 export DOTSDIR=${HOME}/dotfiles
 #Railsコマンドの補完
