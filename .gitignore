@@ -1,0 +1,5 @@
+
+bin/twitter_authentication.sh
+*.swp
+.DS_Store
+

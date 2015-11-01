@@ -185,3 +185,9 @@ eval "$(hub alias -s)"
 
 #postgresqlのパス設定
 export PGDATA=/usr/local/var/postgres
+
+
+# twitterと接続するために暗号キーを環境変数に書くscript
+source $HOME/dotfiles/bin/twitter_authentication.sh
+
+
