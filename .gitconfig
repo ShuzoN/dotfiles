@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[core]
+# Please adapt and uncomment the following lines:
+#	user = nakamura_mac
+#	email = nakamura_mac@nakamura-mac.local
+[user]
+	name = ShuzoN
+	email = d.namu.r21@gmail.com
+[core]
+	editor = /usr/bin/vim
