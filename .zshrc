@@ -150,7 +150,7 @@ bindkey '^t' zaw-tmux
 
 #--------------------------------------
 # ネットワークプロキシの設定
-source "$DOTSDIR/set_proxy_by_networksetup.sh"
+source "$DOTSDIR/set_proxy_by_dns.sh"
 # export http_proxy=http://proxy.nagaokaut.ac.jp:8080
 # export http_proxy=""
 # export https_proxy=$http_proxy
