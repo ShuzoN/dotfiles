@@ -8,3 +8,7 @@
 	email = d.namu.r21@gmail.com
 [core]
 	editor = /usr/bin/vim
+[alias]
+  st = status
+  co = checkout
+  lg = log --graph --decorate --all --oneline
