@@ -21,4 +21,7 @@ ln -sf $HOME/.dotfiles/.wgetrc $HOME/.wgetrc
 echo "linked wgetrc"
 
 ln -sf $HOME/.dotfiles/.curlrc $HOME/.curlrc
-echo "linkedrlrc"
+echo "linked curlrc"
+
+network_location="nut" #macのguiネットワーク環境名
+sudo networksetup -switchtolocation $network_location
