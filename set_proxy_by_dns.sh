@@ -5,9 +5,12 @@
 #
 # MacのNetwork Locationでproxyを設定
 # http://qiita.com/uetchy/items/b9991d1f86b23f4a184d
+
+# digコマンド
+# http://www.atmarkit.co.jp/ait/articles/1409/25/news001.html#opt
 #************************************************************
 domain_server="SERVER: 133.44.62.200" #domain server ip
-if dig | grep -q $domain_server ; 
+if dig -4 +time=1 | grep -q $domain_server ; 
 then
   source "$DOTSDIR/bin/proxy_on.sh"
 else
