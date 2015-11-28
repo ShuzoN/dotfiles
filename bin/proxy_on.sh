@@ -5,6 +5,10 @@
 #
 # --- abst ---
 # nut proxyをonにする.
+# macのネットワーク設定をNUTにする.
+
+# sudoコマンドをpasswdなしで使う方法
+# http://qiita.com/pugiemonn/items/baaf7243ded2e6ab94f9
 #************************************************************
 export http_proxy=http://proxy.nagaokaut.ac.jp:8080/
 export HTTP_PROXY=$http_proxy
@@ -23,5 +27,5 @@ echo "linked wgetrc"
 ln -sf $HOME/.dotfiles/.curlrc $HOME/.curlrc
 echo "linked curlrc"
 
-network_location="nut" #macのguiネットワーク環境名
-sudo networksetup -switchtolocation $network_location
+network_location="nut" #for mac system network
+sudo networksetup -switchtolocation $network_location > /dev/null
