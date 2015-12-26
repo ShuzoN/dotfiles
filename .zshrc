@@ -4,6 +4,8 @@ eval "$(rbenv init -)"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export DOTSDIR=${HOME}/dotfiles
+# NUTFes/group_managerに必要な環境変数を設定
+source "$HOME/dotfiles/group_manager.sh"
 #Railsコマンドの補完
 fpath=($(brew --prefix)/share/zsh-completions $fpath)
 # gitコマンドの補完
