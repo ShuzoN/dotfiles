@@ -9,7 +9,13 @@ source "$HOME/dotfiles/group_manager.sh"
 # rbenvのパス
 export PATH=$HOME/.rbenv/shims:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
-
+# bindkey
+bindkey -r '^H'
+bindkey -r '^J'
+bindkey -r '^K'
+bindkey -r '^L'
+bindkey -r '^_'
+bindkey -r '^\'
 #Railsコマンドの補完
 fpath=($(brew --prefix)/share/zsh-completions $fpath)
 # gitコマンドの補完
@@ -36,9 +42,9 @@ colors
 setopt prompt_subst 
 # PROMPTを表示
 function zle-line-init zle-keymap-select {
-set_prompt
-zle && zle reset-prompt #プロンプト再描画
-echo #reset-promptすると1行上にずれるのでechoで調整
+  set_prompt
+  zle && zle reset-prompt #プロンプト再描画
+  echo #reset-promptすると1行上にずれるのでechoで調整
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
@@ -193,8 +199,6 @@ eval "$(hub alias -s)"
 #postgresqlのパス設定
 export PGDATA=/usr/local/var/postgres
 
-
 # twitterと接続するために暗号キーを環境変数に書くscript
 source $HOME/dotfiles/bin/twitter_authentication.sh
-
 
