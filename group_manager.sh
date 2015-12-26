@@ -21,3 +21,5 @@ export EMAIL_SENDER='Shuzo Nakamura <d.namu.r21@gmail.com>'
 export DEFAULT_URL=https://nutfes-group-manager.herokuapp.com
 
 . $HOME/dotfiles/group_manager_pw.sh
+export RAILS_SERVE_STATIC_FILES=true
+
