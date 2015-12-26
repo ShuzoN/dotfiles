@@ -420,22 +420,22 @@
  nnoremap [Tree] <Nop>
  nnoremap r <Nop>
  nmap r [Tree]
- nnoremap <silent> [Tree]s :split<Enter>
- nnoremap <silent> [Tree]v :vsplit<Enter>
+ nnoremap <silent> [Tree]- :split<Enter>
+ nnoremap <silent> [Tree]\ :vsplit<Enter>
  nnoremap <silent> [Tree]j <C-w>j
  nnoremap <silent> [Tree]k <C-w>k
  nnoremap <silent> [Tree]l <C-w>l
  nnoremap <silent> [Tree]h <C-w>h
- nnoremap <silent> [Tree]J <C-w>J
- nnoremap <silent> [Tree]K <C-w>K
- nnoremap <silent> [Tree]L <C-w>L
- nnoremap <silent> [Tree]H <C-w>H
+ nnoremap <silent> [Tree]n <C-w>J
+ nnoremap <silent> [Tree]m <C-w>K
+ nnoremap <silent> [Tree], <C-w>L
+ nnoremap <silent> [Tree]n <C-w>H
  nnoremap <silent> [Tree]r <C-w>r
  nnoremap <silent> [Tree]= <C-w>=
- nnoremap <silent> [Tree]. <C-w>>
- nnoremap <silent> [Tree], <C-w><
- nnoremap <silent> [Tree]+ <C-w>+
- nnoremap <silent> [Tree]- <C-w>-
+ nnoremap <silent> [Tree]<C-l> <C-w>>
+ nnoremap <silent> [Tree]<C-h> <C-w><
+ nnoremap <silent> [Tree]<C-j> <C-w>+
+ nnoremap <silent> [Tree]<C-k> <C-w>-
  nmap <Space> <Nop>
 
  " ------------------------------------------
