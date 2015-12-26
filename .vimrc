@@ -1,4 +1,4 @@
-"NeoBundleの設定" 
+" NeoBundleの設定" 
  set nocompatible
  " クリップボードを使用可能に
  set clipboard+=unnamed
@@ -6,17 +6,20 @@
  set backspace=indent,eol,start
  " ---------------key bind --------------
  " 間違えやすい, 使わないバインドを無効化
- noremap <C-z> <Nop>
- noremap <C-b> <Nop>
- noremap <C-f> <Nop>
- noremap <C-j> <Nop>
- noremap <C-n> <Nop>
- noremap <C-p> <Nop>
- noremap <C-c> <Nop>
- noremap <C-m> <Nop>
- noremap <S-h> <Nop>
- noremap <S-l> <Nop>
- nnoremap ZQ <Nop>
+ nmap <C-z> <Nop>
+ nmap <C-b> <Nop>
+ nmap <C-f> <Nop>
+ nmap <C-j> <Down>
+ nmap <C-k> <Up>
+ nmap <C-h> <Left>
+ nmap <C-l> <Right>
+ nmap <C-n> <Nop>
+ nmap <C-p> <Nop>
+ nmap <C-c> <Nop>
+ nmap <C-m> <Nop>
+ nmap <S-h> <Nop>
+ nmap <S-l> <Nop>
+ nmap ZQ <Nop>
  " コロンとセミコロンの入れ替え
  noremap ; :
  " enter で改行挿入
@@ -57,6 +60,7 @@
  NeoBundle 'tpope/vim-rails'
  " :R 対応するmvcに移動
  " :A テストに移動
+ "
 
  " === コマンドを独自のものに置換できるコマンド ===
  " :Rなどshift押すのがめんどいので:rに置き換える
@@ -104,6 +108,8 @@
  au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
  " au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
  "===========================================
+ " tmuxのペイン移動をするプラグイン
+ NeoBundle 'christoomey/vim-tmux-navigator'
 
  " s>,s< でウィンドウの縁を移動させるプラグイン
  NeoBundle 'kana/vim-submode'
@@ -422,10 +428,17 @@
  nmap r [Tree]
  nnoremap <silent> [Tree]- :split<Enter>
  nnoremap <silent> [Tree]\ :vsplit<Enter>
- nnoremap <silent> [Tree]j <C-w>j
- nnoremap <silent> [Tree]k <C-w>k
- nnoremap <silent> [Tree]l <C-w>l
- nnoremap <silent> [Tree]h <C-w>h
+ " nnoremap <silent> [Tree]j <C-w>j
+ " nnoremap <silent> [Tree]k <C-w>k
+ " nnoremap <silent> [Tree]l <C-w>l
+ " nnoremap <silent> [Tree]h <C-w>h
+
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+
  nnoremap <silent> [Tree]n <C-w>J
  nnoremap <silent> [Tree]m <C-w>K
  nnoremap <silent> [Tree], <C-w>L
