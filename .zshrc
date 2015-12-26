@@ -145,7 +145,7 @@ setopt extended_glob
 zle -N zaw-history
 zle -N history-beginning-search-backward
 zle -N history-beginning-search-forward
-bindkey '^h' zaw-history
+bindkey '^G' zaw-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
