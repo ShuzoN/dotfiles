@@ -3,3 +3,4 @@ bin/twitter_authentication.sh
 *.swp
 .DS_Store
 
+$HOME/dotfiles/group_manager_pw.sh
