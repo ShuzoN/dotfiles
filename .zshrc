@@ -4,6 +4,12 @@ eval "$(rbenv init -)"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export DOTSDIR=${HOME}/dotfiles
+# NUTFes/group_managerに必要な環境変数を設定
+source "$HOME/dotfiles/group_manager.sh"
+# rbenvのパス
+export PATH=$HOME/.rbenv/shims:$PATH
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+
 #Railsコマンドの補完
 fpath=($(brew --prefix)/share/zsh-completions $fpath)
 # gitコマンドの補完
@@ -139,7 +145,7 @@ setopt extended_glob
 zle -N zaw-history
 zle -N history-beginning-search-backward
 zle -N history-beginning-search-forward
-bindkey '^h' zaw-history
+bindkey '^G' zaw-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
