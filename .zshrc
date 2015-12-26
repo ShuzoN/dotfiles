@@ -6,6 +6,10 @@ export PATH="/usr/local/bin:$PATH"
 export DOTSDIR=${HOME}/dotfiles
 # NUTFes/group_managerに必要な環境変数を設定
 source "$HOME/dotfiles/group_manager.sh"
+# rbenvのパス
+export PATH=$HOME/.rbenv/shims:$PATH
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+
 #Railsコマンドの補完
 fpath=($(brew --prefix)/share/zsh-completions $fpath)
 # gitコマンドの補完
