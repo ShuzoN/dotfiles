@@ -17,6 +17,7 @@
  nmap <C-p> <Nop>
  nmap <C-c> <Nop>
  nmap <C-m> <Nop>
+ nmap <C-\> <Nop>
  nmap <S-h> <Nop>
  nmap <S-l> <Nop>
  nmap ZQ <Nop>
@@ -366,9 +367,10 @@
  inoremap <expr><C-y>  neocomplcache#close_popup()
  " 候補をキャンセルし、ポップアップを閉じる
  inoremap <expr><ESC>  neocomplcache#cancel_popup()
- " Ctrl + / でコメントアウトと解除
- nmap <C-_> <Plug>(caw:i:toggle)
- vmap <C-_> <Plug>(caw:i:toggle)
+ " Ctrl + p でコメントアウトと解除
+ nmap <C-p> <Plug>(caw:i:toggle)
+
+ vmap <C-p> <Plug>(caw:i:toggle)
  " -------描画設定---------
  "vimの色設定(solarizedを使用)"
  syntax enable
@@ -423,15 +425,8 @@
  " ディレクトリツリーを色付
  let g:NERDChristmasTree=1
  " ====ウィンドウ操作のキーマップ==== " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
- nnoremap [Tree] <Nop>
- nnoremap r <Nop>
- nmap r [Tree]
- nnoremap <silent> [Tree]- :split<Enter>
- nnoremap <silent> [Tree]\ :vsplit<Enter>
- " nnoremap <silent> [Tree]j <C-w>j
- " nnoremap <silent> [Tree]k <C-w>k
- " nnoremap <silent> [Tree]l <C-w>l
- " nnoremap <silent> [Tree]h <C-w>h
+ nnoremap <silent> <C-_> :split<Enter>
+ nnoremap <silent> <C-\> :vsplit<Enter>
 
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
@@ -439,17 +434,11 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
- nnoremap <silent> [Tree]n <C-w>J
- nnoremap <silent> [Tree]m <C-w>K
- nnoremap <silent> [Tree], <C-w>L
- nnoremap <silent> [Tree]n <C-w>H
- nnoremap <silent> [Tree]r <C-w>r
- nnoremap <silent> [Tree]= <C-w>=
- nnoremap <silent> [Tree]<C-l> <C-w>>
- nnoremap <silent> [Tree]<C-h> <C-w><
- nnoremap <silent> [Tree]<C-j> <C-w>+
- nnoremap <silent> [Tree]<C-k> <C-w>-
- nmap <Space> <Nop>
+ nnoremap <silent> <C-n> <C-w>J
+ nnoremap <silent> <C-m> <C-w>K
+ nnoremap <silent> <C-,> <C-w>L
+ nnoremap <silent> <C-b> <C-w>H
+ 
 
  " ------------------------------------------
  NeoBundleCheck
