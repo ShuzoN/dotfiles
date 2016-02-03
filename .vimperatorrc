@@ -25,6 +25,12 @@ noremap l <C-i>
 set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,次へ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
 set previouspattern=\bprev|previous\b,prev,^前(の)?ページ,前へ,\b前.*,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)
 
+
+" ヒントに数字を使う
+set hintchars=1234890
+
+" ヒントのフォントサイズを大きくする
+hi Hint z-index:5000; font-family:Menlo; font-size:14px; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute;
 " ---------------
 " qmarks
 " 使用方法
@@ -43,4 +49,5 @@ qmark y https://www.youtube.com/
 " source ~/.vimperator
 " と打つか
 " ブラウザを再起動して変更を適応
+
 
