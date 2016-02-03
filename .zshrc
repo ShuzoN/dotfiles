@@ -1,5 +1,3 @@
-#rbenvの初期化設定
-eval "$(rbenv init -)"
 #パスを通す
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
@@ -7,8 +5,10 @@ export DOTSDIR=${HOME}/dotfiles
 # NUTFes/group_managerに必要な環境変数を設定
 source "$HOME/dotfiles/group_manager.sh"
 # rbenvのパス
-export PATH=$HOME/.rbenv/shims:$PATH
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+#rbenvの初期化設定
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # bindkey
 bindkey -r '^H'
 bindkey -r '^J'
@@ -200,5 +200,7 @@ eval "$(hub alias -s)"
 export PGDATA=/usr/local/var/postgres
 
 # twitterと接続するために暗号キーを環境変数に書くscript
-source $HOME/dotfiles/bin/twitter_authentication.sh
+# source $HOME/dotfiles/bin/twitter_authentication.sh
 
+# pryをirbと置き換える
+alias irb='pry'
