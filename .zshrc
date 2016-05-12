@@ -35,6 +35,9 @@ bindkey "^[[Z" reverse-menu-complete"]]"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 #キーバインドをvimライクにする
 bindkey -v
+#C-qでカレントterminalの履歴を綺麗にする
+bindkey "^q" clear-screen
+#
 #色を出力できるようにする
 autoload colors
 colors
@@ -179,7 +182,6 @@ if [ -n "$BUFFER" ]; then
   return 0
 fi
 echo
-ls -a
 echo -e "\e[0;33m--- git branch ---\e[0m"
 git branch
 echo -e "\e[0;33m--- git status ---\e[0m"
