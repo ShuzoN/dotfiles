@@ -7,7 +7,7 @@ source "$HOME/dotfiles/group_manager.sh"
 # rbenvのパス
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 #rbenvの初期化設定
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(rbenv init -)" 
 
 # bindkey
 bindkey -r '^H'
@@ -204,3 +204,4 @@ export PGDATA=/usr/local/var/postgres
 
 # pryをirbと置き換える
 alias irb='pry'
+
