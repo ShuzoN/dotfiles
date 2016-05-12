@@ -23,3 +23,11 @@ export DEFAULT_URL=https://nutfes-group-manager.herokuapp.com
 . $HOME/dotfiles/group_manager_pw.sh
 export RAILS_SERVE_STATIC_FILES=true
 
+# group-manager用にgemfileのパスを変更
+gemlocal="Gemfile.local"
+if [ -f ${gemlocal} ]; then
+  echo "Gemfile.local exist!"
+  export BUNDLE_GEMFILE="Gemfile.local"
+else
+  unset BUNDLE_GEMFILE
+fi
