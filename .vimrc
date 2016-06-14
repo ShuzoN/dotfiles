@@ -20,6 +20,7 @@
  nmap <C-\> <Nop>
  nmap <S-h> <Nop>
  nmap <S-l> <Nop>
+ nmap <Space>c <Nop>
  nmap ZQ <Nop>
  " コロンとセミコロンの入れ替え
  noremap ; :
@@ -174,6 +175,12 @@
  NeoBundle 'Shougo/neocomplcache'
  NeoBundle 'Shougo/neosnippet'
  NeoBundle 'Shougo/neosnippet-snippets'
+
+ " ---- vimで シソーラスの利用 ----
+ NeoBundle 'rhysd/unite-codic.vim'
+ NeoBundle 'koron/codic-vim'
+ nnoremap <silent> <Space>c :Codic 
+
  " 複数行をコメントアウト可能にする
  NeoBundle 'tyru/caw.vim.git'
  " htmlタグの自動補完(erbファイルに適応)
@@ -371,6 +378,8 @@
  nmap <C-p> <Plug>(caw:i:toggle)
 
  vmap <C-p> <Plug>(caw:i:toggle)
+
+
  " -------描画設定---------
  "vimの色設定(solarizedを使用)"
  syntax enable
