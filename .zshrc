@@ -11,6 +11,8 @@ source "$RESEARCH_DIR/env_val_for_twitter.sh"
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 #rbenvの初期化設定
 eval "$(rbenv init -)" 
+# NeoVimの設定ファイルのパス
+export XDG_CONFIG_HOME=$HOME/dotfiles
 
 # bindkey
 bindkey -r '^H'

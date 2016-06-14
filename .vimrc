@@ -1,5 +1,5 @@
-" NeoBundleの設定" 
- set nocompatible
+ set nocompatible " NeoBundleの設定
+
  " クリップボードを使用可能に
  set clipboard+=unnamed
  " backspaceを有効にする
@@ -13,9 +13,14 @@
  nmap <C-k> <Up>
  nmap <C-h> <Left>
  nmap <C-l> <Right>
+ imap <C-j> <Nop>
+ imap <C-k> <Nop>
+ imap <C-h> <Nop>
+ imap <C-l> <Nop>
  nmap <C-n> <Nop>
  nmap <C-p> <Nop>
  nmap <C-c> <Nop>
+ imap <C-c> <Nop>
  nmap <C-m> <Nop>
  nmap <C-\> <Nop>
  nmap <S-h> <Nop>
@@ -60,12 +65,6 @@
 
  " === Railsプロジェクト間のfile移動をワンアクションで可能にする ===
  NeoBundle 'tpope/vim-rails'
- " :R 対応するmvcに移動
- " :A テストに移動
- "
-
- " === コマンドを独自のものに置換できるコマンド ===
- " :Rなどshift押すのがめんどいので:rに置き換える
  NeoBundle 'tyru/vim-altercmd' 
  " call  altercmd#load()
  au BufRead *.* AlterCommand ni NeoBundleInstall
@@ -113,14 +112,13 @@
  " tmuxのペイン移動をするプラグイン
  NeoBundle 'christoomey/vim-tmux-navigator'
 
- " s>,s< でウィンドウの縁を移動させるプラグイン
- NeoBundle 'kana/vim-submode'
  " 見出し・関数にジャンプ
  NeoBundle 'h1mesuke/unite-outline'
  " テキスト整形ツール
  NeoBundle 'Align'
  " vimのカラースキームsolarizedの導入
  NeoBundle 'altercation/vim-colors-solarized'
+
  " ------------clever-f--------------
  " fによる検索を拡張する
  " f{char} : 行内のcharを検索する
@@ -190,43 +188,7 @@
    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
    autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
  augroup END
- " ---------- markdownをブラウザでプレビュー --------------------------------
- " PreVim(markdownをブラウザでリアルタイムプレビューする)
- " <space>+p o : プレビュー
- " <space>+p r : リロード
- NeoBundle 'tyru/open-browser.vim' 
- NeoBundle 'kannokanno/previm'
- "起動コマンド     :<Space>p
- "
- "プレビュー開始   :<Space>p + o
- "リロード         :<Space>p + r
- autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
- let g:previm_open_cmd='open -a Firefox'
- nnoremap [previm] <Nop>
- nmap <Space>p [previm]
- nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
- nnoremap <silent> [previm]r :call previm#refresh()<CR>
  "----------------------------
- "
- " === status lineにgitのブランチを表示 ===
- " status line を拡張する
- NeoBundle 'itchyny/lightline.vim' 
- " vim内でgitを操作可能
- NeoBundle 'tpope/vim-fugitive'
- au FileType gitcommit nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
- au FileType gitcommit inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
- au FileType fugitiveblame nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
- au BufRead *.* AlterCommand ga :Gwrite  " 編集ファイルをgit add
- au BufRead *.* AlterCommand gr :Gread   " 編集ファイルをgit reset/ 戻すのは :w
- au BufRead *.* AlterCommand gd :Gdiff   " 編集ファイルをgit diff
- "   - : add/resetの切り替え
- "   D : diff表示
- "   C : コミット
- "   Enter : ファイルの内容を表示
- au BufRead *.* AlterCommand gs Gstatus " 編集ファイルをgit status
- "   変更箇所でdp  : その差分をgit add
- " 詳しい操作は http://karur4n.hatenablog.com/entry/2014/08/19/161320
-
  " gitの差分を表示する
  NeoBundle 'airblade/vim-gitgutter'
  " vim-gitgutter
@@ -234,7 +196,8 @@
  let g:gitgutter_sign_modified= '→'
  let g:gitgutter_sign_removed = 'x'
 
- " LightLine.vim
+ " status lineにgitのブランチを表示
+ NeoBundle 'itchyny/lightline.vim'
  let g:lightline = {
    \ 'mode_map' : {'c' : 'NORMAL' },
    \ 'active'  : {
@@ -299,24 +262,6 @@
    return winwidth(0) > 60 ? lightline#mode() : ''
  endfunction
 
- " -------------------------------------
-
- call neobundle#end()
- " neocomplcacheのバグが取れれば嬉しい
- let g:neocomplcache_force_overwrite_completefunc=1
- " ---------tex設定--------------------------
- let tex_flavor = 'latex'
- set grepprg=grep\ -nH\ $*
- set shellslash
- " Macの人はデフォルトでpdfなので必要ない その他のOSの人はデフォルトがdviなので必要
- let g:Tex_DefaultTargetFormat = 'pdf' 
- let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
- let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
- let g:Tex_FormatDependency_pdf = 'dvi,pdf'
- let g:Tex_BibtexFlavor = 'jbibtex'
- " ファイルのビュワー
- let g:Tex_ViewRule_dvi = 'xdvi'
- let g:Tex_ViewRule_pdf = 'evince'
 
  " ------------ vim内でgitを使う -------------
  " gitスキーマをhttpsスキーマに変換
@@ -357,35 +302,26 @@
      \ }
  " -----------vimの補完キーバインド ----------------
  " オムニ補完をSpace-cに当てる
- " imap <Space>c <C-x><C-o>
+ imap <C-c> <C-x><C-o>
  " 改行で補完ウィンドを閉じる
  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
  function! s:my_cr_function()
    return neocomplcache#smart_close_popup() . "\<CR>"
  endfunction
  " <C-h>や<BS>を押した時に確実にポップアップを削除
- inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
  " tabで補完候補の選択を行う
- inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
- inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
- " 補完をキャンセル Ctrl+u
+ inoremap <expr><C-j> pumvisible() ? "\<Down>" : "\<TAB>"
+ inoremap <expr><C-k> pumvisible() ? "\<Up>" : "\<S-TAB>"
+ " 補完をキャンセル
  inoremap <expr><C-u>     neocomplcache#undo_completion()
  " 選択候補の確定
- inoremap <expr><C-y>  neocomplcache#close_popup()
+ inoremap <expr><C-h>  neocomplcache#close_popup()
  " 候補をキャンセルし、ポップアップを閉じる
  inoremap <expr><ESC>  neocomplcache#cancel_popup()
  " Ctrl + p でコメントアウトと解除
  nmap <C-p> <Plug>(caw:i:toggle)
-
  vmap <C-p> <Plug>(caw:i:toggle)
-
-
- " -------描画設定---------
- "vimの色設定(solarizedを使用)"
- syntax enable
- set background=light
- colorscheme solarized
- let g:solarized_termcolors=256
  " Markdownのソースに色付
  let g:markdown_fenced_languages = [
        \  'css',
@@ -397,19 +333,6 @@
        \  'sass',
        \  'xml',
        \]
- " 行番号を相対位置表示
- set number relativenumber 
- " indentの設定
- filetype plugin indent on
- " soft tabを有効に
- set expandtab
- " オートインデントを有効に
- set autoindent
- " インデント幅を2文字に
- set tabstop=2 shiftwidth=2 softtabstop=2
- " 編集行の番号にアンダーライン
- set cursorline
- highlight CursorLine ctermbg=232
 
  " / による検索で
  " 小文字のみの入力では大文字小文字を区別しない
@@ -424,33 +347,15 @@
  highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
        augroup END
 
- " Tab、行末の半角スペースを明示的に表示する。
- " set list
- " set listchars=tab:_\ ,trail:_
- " ---------vimでtreeを使う-------------------------
- nnoremap <C-e> :NERDTreeToggle<CR>
- " ファイルなしならばNERDTREEを起動
- autocmd vimenter * if !argc() | NERDTree | endif
- " ディレクトリツリーを色付
- let g:NERDChristmasTree=1
- " ====ウィンドウ操作のキーマップ==== " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
- nnoremap <silent> <C-_> :split<Enter>
- nnoremap <silent> <C-\> :vsplit<Enter>
-
+ " ====ウィンドウ操作のキーマップ==== 
+ " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
 let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-_> :split<Enter>
+nnoremap <silent> <C-\> :vsplit<Enter>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
- nnoremap <silent> <C-n> <C-w>J
- nnoremap <silent> <C-m> <C-w>K
- nnoremap <silent> <C-,> <C-w>L
- nnoremap <silent> <C-b> <C-w>H
- 
-
- " ------------------------------------------
- NeoBundleCheck
 
  " ------------ ステータスバー --------------
  " ステータスバーの表示
@@ -463,48 +368,29 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  inoremap <silent> <ESC> <ESC>
  inoremap <silent> <C-[> <ESC>
 
- " ------------ タブの操作と表示 ------------
- "Anywhere SID.
- function! s:SID_PREFIX()
-   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
- endfunction
 
- " Set tabline.
- function! s:my_tabline()  "{{{
-   let s = ''
-   for i in range(1, tabpagenr('$'))
-     let bufnrs = tabpagebuflist(i)
-     let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-     let no = i  " display 0-origin tabpagenr.
-     let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-     let title = fnamemodify(bufname(bufnr), ':t')
-     let title = '[' . title . ']'
-     let s .= '%'.i.'T'
-     let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-     let s .= no . ':' . title
-     let s .= mod
-     let s .= '%#TabLineFill# '
-   endfor
-   let s .= '%#TabLineFill#%T%=%#TabLine#'
-   return s
- endfunction "}}}
- let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
- set showtabline=2 " 常にタブラインを表示
+ " ---------- 表示設定 -----------
+ " 行番号を相対位置表示
+ set number relativenumber 
+ " indentの設定
+ filetype plugin indent on
+ " soft tabを有効に
+ set expandtab
+ " オートインデントを有効に
+ set autoindent
+ " インデント幅を2文字に
+ set tabstop=2 shiftwidth=2 softtabstop=2
+ " 編集行の番号にアンダーライン
+ set cursorline
 
- " The prefix key.
- nnoremap [Tag] <Nop>
- " Tab jump
- nmap <Space>t [Tag]
- " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
- for n in range(1, 9)
-   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
- endfor
- " tn 新しいタブを一番右に作る
- map <silent> [Tag]n :tablast <bar> tabnew<CR>
- " td タブを閉じる
- map <silent> [Tag]d :tabclose<CR>
- " tl/S-l 次のタブ
- map <silent> <S-l>  :tabnext<CR>
- " th/S-h 前のタブ
- map <silent> <S-h>  :tabprevious<CR>
+ call neobundle#end()
 
+ " -------描画設定---------
+ "vimの色設定(solarizedを使用)"
+ syntax enable
+ colorscheme solarized
+ set background=light
+ let g:solarized_termcolors=256
+ let g:neocomplcache_force_overwrite_completefunc=1
+
+ NeoBundleCheck
