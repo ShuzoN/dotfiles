@@ -26,6 +26,7 @@
  nmap <S-h> <Nop>
  nmap <S-l> <Nop>
  nmap <Space>c <Nop>
+ nmap U <Nop>
  nmap ZQ <Nop>
  " コロンとセミコロンの入れ替え
  noremap ; :
@@ -383,6 +384,10 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  " 編集行の番号にアンダーライン
  set cursorline
 
+ " --- Undo treeをグラフィカル表示 ---
+ " Gundo.vim
+ nnoremap U :GundoToggle<CR>
+ NeoBundle 'sjl/gundo.vim'
  call neobundle#end()
 
  " -------描画設定---------
