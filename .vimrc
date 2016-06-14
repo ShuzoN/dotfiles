@@ -1,4 +1,5 @@
  set nocompatible " NeoBundleの設定
+
  " クリップボードを使用可能に
  set clipboard+=unnamed
  " backspaceを有効にする
@@ -116,6 +117,7 @@
  NeoBundle 'Align'
  " vimのカラースキームsolarizedの導入
  NeoBundle 'altercation/vim-colors-solarized'
+
  " ------------clever-f--------------
  " fによる検索を拡張する
  " f{char} : 行内のcharを検索する
@@ -313,12 +315,6 @@
  " Ctrl + p でコメントアウトと解除
  nmap <C-p> <Plug>(caw:i:toggle)
  vmap <C-p> <Plug>(caw:i:toggle)
- " -------描画設定---------
- "vimの色設定(solarizedを使用)"
- syntax enable
- set background=light
- colorscheme solarized
- let g:solarized_termcolors=256
  " Markdownのソースに色付
  let g:markdown_fenced_languages = [
        \  'css',
@@ -381,5 +377,13 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  set cursorline
 
  call neobundle#end()
+
+ " -------描画設定---------
+ "vimの色設定(solarizedを使用)"
+ syntax enable
+ colorscheme solarized
+ set background=light
+ let g:solarized_termcolors=256
  let g:neocomplcache_force_overwrite_completefunc=1
+
  NeoBundleCheck
