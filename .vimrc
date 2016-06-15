@@ -25,6 +25,7 @@
  nmap <C-\> <Nop>
  nmap <S-h> <Nop>
  nmap <S-l> <Nop>
+ nmap Q <Nop>
  nmap <Space>c <Nop>
  nmap U <Nop>
  nmap ZQ <Nop>
@@ -388,6 +389,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  " Gundo.vim
  nnoremap U :GundoToggle<CR>
  NeoBundle 'sjl/gundo.vim'
+ " --- vimでコードを実行 ---
+ NeoBundle 'thinca/vim-quickrun'
+ nnoremap Q :QuickRun ruby<CR>
  call neobundle#end()
 
  " -------描画設定---------
