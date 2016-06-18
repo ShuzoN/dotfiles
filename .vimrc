@@ -392,6 +392,11 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  " --- vimでコードを実行 ---
  NeoBundle 'thinca/vim-quickrun'
  nnoremap Q :QuickRun ruby<CR>
+ " --- キャメルケース<=>スネークケースを切り替える ---
+ NeoBundle 'kana/vim-operator-user'
+ NeoBundle 'tyru/operator-camelize.vim'
+ map <Space>p <plug>(operator-camelize-toggle)
+
  call neobundle#end()
 
  " -------描画設定---------
