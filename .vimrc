@@ -11,11 +11,11 @@
  nmap <C-f> <Nop>
  nmap <C-j> <Down>
  nmap <C-k> <Up>
- nmap <C-h> <Left>
+ nmap <C-h> <Nop>
  nmap <C-l> <Right>
  imap <C-j> <Nop>
  imap <C-k> <Nop>
- imap <C-h> <Nop>
+ imap <C-h> <BS>
  imap <C-l> <Nop>
  nmap <C-n> <Nop>
  nmap <C-p> <Nop>
@@ -318,7 +318,7 @@
  " 補完をキャンセル
  inoremap <expr><C-u>     neocomplcache#undo_completion()
  " 選択候補の確定
- inoremap <expr><C-h>  neocomplcache#close_popup()
+ inoremap <expr><C-y>  neocomplcache#close_popup()
  " 候補をキャンセルし、ポップアップを閉じる
  inoremap <expr><ESC>  neocomplcache#cancel_popup()
  " Ctrl + p でコメントアウトと解除
