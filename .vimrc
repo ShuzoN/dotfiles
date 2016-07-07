@@ -307,6 +307,9 @@
  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
  let g:syntastic_ruby_checkers = ['rubocop']
  let g:ref_refe_cmd = $HOME.'/.rbenv/shims/refe'
+ " railsプロジェクトのみ--railsオプションをつける
+ au FileType ruby if exists('b:rails_root') |
+   \ let b:syntastic_ruby_rubocop_options = '--rails' | endif
  " --------------------------------
  " Vimの補完
  " --------------------------------
