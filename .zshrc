@@ -13,6 +13,8 @@ export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)" 
 # NeoVimの設定ファイルのパス
 export XDG_CONFIG_HOME=$HOME/dotfiles
+# Heroku Toolbeltのパス
+export PATH="/usr/local/heroku/bin:$PATH"
 
 # bindkey
 bindkey -r '^H'
