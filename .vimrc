@@ -197,7 +197,6 @@
  let g:gitgutter_sign_added = '+'
  let g:gitgutter_sign_modified= '→'
  let g:gitgutter_sign_removed = 'x'
-
  " status lineにgitのブランチを表示
  NeoBundle 'itchyny/lightline.vim'
  let g:lightline = {
@@ -268,21 +267,49 @@
  " ------------ vim内でgitを使う -------------
  " gitスキーマをhttpsスキーマに変換
  let g:neobundle_default_git_protocol='https'
- " 
 
- " ---------補完機能の設定--------------------
- " ----------Rubyの補完------------
- " ruby .や::を入力した時にオムニ補完が有効になるようにする
+ " ------------ 補完機能の設定   --------------
+ " Rubyの補完
+ " -------------------------------
+ " コード補完
+ NeoBundle 'Shougo/neocomplete.vim'
+ NeoBundle 'marcus/rsense'
+ NeoBundle 'supermomonga/neocomplete-rsense.vim'
+ " 静的解析
+ NeoBundle 'scrooloose/syntastic'
+ " ドキュメント参照
+ NeoBundle 'thinca/vim-ref'
+ NeoBundle 'yuku-t/vim-ref-ri'
+ " メソッド定義元へのジャンプ
+ NeoBundle 'szw/vim-tags'
+ " 自動で閉じる
+ NeoBundle 'tpope/vim-endwise'
+ " -------------------------------
+ " Rsense
+ " -------------------------------
+ let g:rsenseHome = '/usr/local/bin/rsense'
+ let g:rsenseUseOmniFunc = 1
+ " --------------------------------
+ " neocomplete.vim
+ " --------------------------------
+ let g:acp_enableAtStartup = 0
+ let g:neocomplete#enable_at_startup = 1
+ let g:neocomplete#enable_smart_case = 1
  if !exists('g:neocomplete#force_omni_input_patterns')
    let g:neocomplete#force_omni_input_patterns = {}
  endif
- let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
- " 環境変数Rsense_homeに/usr/local/bin/rsense'を指定しても動く
- let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
- " RSense(rubyの補完)のHOMEを指定する
- let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec/"
- " ----------Vimの補完------------
+ let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+ " --------------------------------
+ " rubocop
+ " --------------------------------
+ " syntastic_mode_mapをactiveにするとバッファ保存時にsyntasticが走る
+ " active_filetypesに、保存時にsyntasticを走らせるファイルタイプを指定する
+ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+ let g:syntastic_ruby_checkers = ['rubocop']
+ let g:ref_refe_cmd = $HOME.'/.rbenv/shims/refe'
+ " --------------------------------
+ " Vimの補完
+ " --------------------------------
  " デフォルトのsnipoetを無効に
  let g:neosnippet#disable_runtime_snippets = { "_": 1, }
  " AutoComplPopとの競合を避ける
