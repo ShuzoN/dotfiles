@@ -5,7 +5,7 @@ export DOTSDIR="$HOME/dotfiles"
 # NUTFes/group_managerに必要な環境変数を設定
 source "$DOTSDIR/group_manager.sh"
 # twitter apiに必要な環境変数を設定
-export RESEARCH_DIR=${HOME}/workspace/research/
+export RESEARCH_DIR=${HOME}/research
 source "$RESEARCH_DIR/env_val_for_twitter.sh"
 # rbenvのパス
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
