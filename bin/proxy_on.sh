@@ -19,13 +19,10 @@ export FTP_PROXY=$http_proxy
 export no_proxy=.local,169.254/16,10.10.10.10,127.0.0.1
 export use_proxy=yes
 
-echo "NUT proxy enable"
-
 ln -sf $HOME/.dotfiles/.wgetrc $HOME/.wgetrc
-echo "linked wgetrc"
-
 ln -sf $HOME/.dotfiles/.curlrc $HOME/.curlrc
-echo "linked curlrc"
+
+echo "NUT proxy enable, linked wgetrc, linked curlrc"
 
 network_location="nut" #for mac system network
 sudo networksetup -switchtolocation $network_location > /dev/null
