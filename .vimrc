@@ -56,11 +56,6 @@
  \     'unix' : 'gmake',
  \    },
  \ }
- " === rubyに補完が有効になるようにする ====
- NeoBundleLazy 'supermomonga/neocomplete-rsense.vim',{'autoload' : {
-  \ 'insert' : 1,
-  \ 'filetypes' : 'ruby',
-  \ }}
  " === scssのシンタックスハイライト ========
  NeoBundle 'cakebaker/scss-syntax.vim'
  au BufRead,BufNewFile *.scss set filetype=scss.css
@@ -76,14 +71,6 @@
  autocmd User Rails AlterCommand rm Rmodel  " モデルに移動
  autocmd User Rails AlterCommand rv Rview  " ビューに移動
  autocmd User Rails AlterCommand ra A  " テストに移動
- " ========  インデントをハイライト ========
- NeoBundle 'nathanaelkane/vim-indent-guides'
- let g:indent_guides_auto_colors=0
- autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=24
- autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=23
- let g:indent_guides_enable_on_vim_startup=1
- let g:indent_guides_guide_size=1
-
  " ===========  Unite.vim ===================
  " 直感的なインタフェースを提供するプラグイン
  NeoBundle 'Shougo/unite.vim'
@@ -274,7 +261,10 @@
  " コード補完
  NeoBundle 'Shougo/neocomplete.vim'
  NeoBundle 'marcus/rsense'
- NeoBundle 'supermomonga/neocomplete-rsense.vim'
+ NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', { 'autoload' : {
+   \ 'insert' : 1,
+   \ 'filetypes': 'ruby',
+   \ }}
  " 静的解析
  NeoBundle 'scrooloose/syntastic'
  " ドキュメント参照
@@ -287,18 +277,39 @@
  " -------------------------------
  " Rsense
  " -------------------------------
- let g:rsenseHome = '/usr/local/bin/rsense'
+ let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
  let g:rsenseUseOmniFunc = 1
  " --------------------------------
  " neocomplete.vim
  " --------------------------------
  let g:acp_enableAtStartup = 0
- let g:neocomplete#enable_at_startup = 1
- let g:neocomplete#enable_smart_case = 1
+ " 起動時に有効
+ let g:neocomplete#enable_at_startup = 1 
+ " 大文字が入力まで大/小文字の区別を無視
+ let g:neocomplete#enable_smart_case = 1 
+ " 補完する最小の文字数を設定
+ let g:neocomplcache_min_syntax_length = 3
+" preview window を閉じない
+ let g:neocomplete#enable_auto_close_preview = 0
+" 自動選択を行わない
+ let g:neocomplete#enable_auto_select = 0
+  " _(アンダースコア)区切りの補完を有効化
+ let g:neocomplete#enable_underbar_completion = 1
+ let g:neocomplete#enable_camel_case_completion  =  1
+" ポップアップメニューで表示される候補の数
+  let g:neocomplete#max_list = 20
+" .や::を入力したときにオムニ補完が有効になるようにする
  if !exists('g:neocomplete#force_omni_input_patterns')
    let g:neocomplete#force_omni_input_patterns = {}
  endif
  let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+ let g:neocomplcache_skip_auto_completion_time = '0.6'
+ " vim-railsに対応
+ let g:neocomplcache_force_overwrite_completefunc=1
+ let g:neocomplete#sources#dictionary#dictionaries = {
+     \ 'default' : '',
+     \ 'ruby' : $HOME.'/dotfiles/vim/dic/dicts/ruby.dict'
+     \ }
  " --------------------------------
  " rubocop
  " --------------------------------
@@ -310,28 +321,6 @@
  " railsプロジェクトのみ--railsオプションをつける
  au FileType ruby if exists('b:rails_root') |
    \ let b:syntastic_ruby_rubocop_options = '--rails' | endif
- " --------------------------------
- " Vimの補完
- " --------------------------------
- " デフォルトのsnipoetを無効に
- let g:neosnippet#disable_runtime_snippets = { "_": 1, }
- " AutoComplPopとの競合を避ける
- let g:acp_enableAtStartup = 0
- " neocomplcache を起動時に有効に.
- let g:neocomplcache_enable_at_startup = 1
- " 大文字が入力されるまで大/小文字の区別を無視する.
- let g:neocomplcache_enable_smart_case = 1
- " アンダースコア区切りの補完を有効化
- let g:neocomplcache_enable_underbar_completion = 1
- " シンタックスをキャッシュする時の最小文字長 
- let g:neocomplcache_min_syntax_length = 3
- " neocomplcacheと相性の悪いプラグインを使用するときにneocomplcacheをロックする
- let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
- "
- " Define dictionary.
- let g:neocomplcache_dictionary_filetype_lists = {
-     \ 'default' : ''
-     \ }
  " -----------vimの補完キーバインド ----------------
  " オムニ補完をSpace-cに当てる
  imap <C-c> <C-x><C-o>
@@ -435,6 +424,5 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  colorscheme solarized
  set background=light
  let g:solarized_termcolors=256
- let g:neocomplcache_force_overwrite_completefunc=1
 
  NeoBundleCheck
