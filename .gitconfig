@@ -1,14 +1,21 @@
 # This is Git's per-user configuration file.
-[core]
-# Please adapt and uncomment the following lines:
-#	user = nakamura_mac
-#	email = nakamura_mac@nakamura-mac.local
 [user]
 	name = ShuzoN
 	email = d.namu.r21@gmail.com
 [core]
+	excludesfile = /Users/nakamura_mac/dotfiles/.gitignore_global
+	quotepath = false
 	editor = /usr/bin/vim
+[url "https://"]
+	insteadOf=git://
+[push]
+	default = matching
 [alias]
-  st = status
-  co = checkout
-  lg = log --graph --decorate --all --oneline
+	co  = checkout
+  st  = status
+  cm  = commit
+  lg  = log --graph --decorate --all --oneline
+  lgp = log -p
+  df  = diff
+[fetch]
+	prune = true
