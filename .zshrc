@@ -15,6 +15,10 @@ eval "$(rbenv init -)"
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
 export PATH="/usr/local/heroku/bin:$PATH"
+# Go言語のライブラリpath
+export GOROOT=/usr/local/Cellar/go/1.6.2/libexec
+export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.4-1_1/lib/pkgconfig
+
 
 # bindkey
 bindkey -r '^H'
