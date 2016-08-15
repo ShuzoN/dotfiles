@@ -16,7 +16,10 @@ export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
 export PATH="/usr/local/heroku/bin:$PATH"
 # Go言語のライブラリpath
+export GOPATH=$HOME/workspace/voyage/wiki
 export GOROOT=/usr/local/Cellar/go/1.6.2/libexec
+export PATH=$PATH:$GOPATH/bin
+
 export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.4-1_1/lib/pkgconfig
 
 
