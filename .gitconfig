@@ -18,4 +18,13 @@
   lgp = log -p
   df  = diff
 [fetch]
-	prune = true
+  prune = true
+[grep]
+  lineNumber = true
+[color "grep"]
+  filename = green
+  linenumber = yellow
+  separator = white
+  match = yellow reverse
+  trustExitCode = true
+

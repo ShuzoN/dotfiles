@@ -15,10 +15,6 @@ eval "$(rbenv init -)"
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
 export PATH="/usr/local/heroku/bin:$PATH"
-# Go言語のライブラリpath
-export GOPATH=$HOME/workspace/voyage/wiki
-export GOROOT=/usr/local/Cellar/go/1.6.2/libexec
-export PATH=$PATH:$GOPATH/bin
 
 export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.4-1_1/lib/pkgconfig
 
@@ -212,6 +208,9 @@ bindkey '^m' do_enter
 #hubコマンドをgitコマンドとしてエイリアス(hubはgitの拡張ライブラリ)
 eval "$(hub alias -s)"
 
+# git grep
+alias gg="git grep --break --heading"
+
 #postgresqlのパス設定
 export PGDATA=/usr/local/var/postgres
 
@@ -221,3 +220,6 @@ export PGDATA=/usr/local/var/postgres
 # pryをirbと置き換える
 alias irb='pry'
 
+# 言語のライブラリpath
+export GOPATH="/Users/nakamura_mac/workspace/voyage/wiki"
+export PATH=$PATH:$GOPATH/bin
