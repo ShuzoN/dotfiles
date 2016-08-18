@@ -395,6 +395,8 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  set number relativenumber 
  " indentの設定
  filetype plugin indent on
+ " tplファイルのindent設定
+ au BufRead,BufNewFile *.tpl setl ft=gohtmltmpl
  " soft tabを有効に
  set expandtab
  " オートインデントを有効に
@@ -415,6 +417,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  NeoBundle 'kana/vim-operator-user'
  NeoBundle 'tyru/operator-camelize.vim'
  map <Space>p <plug>(operator-camelize-toggle)
+
+ " --- vim-go ---
+ NeoBundle 'fatih/vim-go'
 
  call neobundle#end()
 
