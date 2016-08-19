@@ -341,8 +341,9 @@
  " 候補をキャンセルし、ポップアップを閉じる
  inoremap <expr><ESC>  neocomplcache#cancel_popup()
  " Ctrl + p でコメントアウトと解除
- nmap <C-p> <Plug>(caw:i:toggle)
- vmap <C-p> <Plug>(caw:i:toggle)
+ nmap <C-p> <Plug>(caw:hatpos:toggle)
+ vmap <C-p> <Plug>(caw:hatpos:toggle)
+ 
  " Markdownのソースに色付
  let g:markdown_fenced_languages = [
        \  'css',
