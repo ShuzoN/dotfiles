@@ -164,6 +164,11 @@ alias -g gbr='git branch'
 alias -g gbrd='git branch -d'
 alias -g gbrD='git branch -D'
 
+# tmux alias
+alias -g tls='tmux ls'
+alias -g tat='tmux a -t'
+alias -g trn='tmux rename-session -t'
+alias -g tkl='tmux kill-session -t'
 
 #--------- ヒストリの設定 ---------
 source ~/zaw/zaw.zsh #zawと呼ばれるプラグイン
