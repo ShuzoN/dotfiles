@@ -398,6 +398,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  filetype plugin indent on
  " tplファイルのindent設定
  au BufRead,BufNewFile *.tpl setl ft=gohtmltmpl
+
  " soft tabを有効に
  set expandtab
  " オートインデントを有効に
@@ -406,6 +407,11 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  set tabstop=2 shiftwidth=2 softtabstop=2
  " 編集行の番号にアンダーライン
  set cursorline
+
+ " ----- javascript のシンタックス ----
+ au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+ NeoBundle 'pangloss/vim-javascript'
 
  " --- Undo treeをグラフィカル表示 ---
  " Gundo.vim
