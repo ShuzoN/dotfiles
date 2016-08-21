@@ -4,6 +4,9 @@ source! /Users/nakamura_mac/.vimperatorrc.local
 
 " vim: set ft=vimperator:
 
+noremap H <Nop>
+noremap L <Nop>
+
 " shift+jkにタブ移動を割り当て
 noremap J <C-n>
 noremap K <C-p>
@@ -16,11 +19,20 @@ noremap k <S-Space>
 noremap h <C-o>
 noremap l <C-i>
 
+lmap <C-j> <Tab> 
+lmap <C-k> <S-Tab> 
+
 " ---------------
 " [ or ] で次のページ, 前のページと書かれたリンクに遷移する
 set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,次へ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
 set previouspattern=\bprev|previous\b,prev,^前(の)?ページ,前へ,\b前.*,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)
 
+" ---------------
+" 自動補完の候補
+set complete=sl
+
+" 入力欄に自動フォーカスしない
+set focuscontent
 
 " ヒントに数字を使う
 set hintchars=1234890
@@ -39,6 +51,7 @@ qmark c https://calendar.google.com/calendar/
 qmark n http://news.yahoo.co.jp/
 qmark t https://trello.com/
 qmark y https://www.youtube.com/ 
+qmark b http://namu-r21.hatenablog.com/
 " ---------------
 
 " ブラウザ上でExモードを起動し,
