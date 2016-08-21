@@ -4,17 +4,13 @@ source! /Users/nakamura_mac/.vimperatorrc.local
 
 " vim: set ft=vimperator:
 
-" shift+jkに矢印キー上下を割り当て
-noremap J <Down>
-noremap K <Up>
+" shift+jkにタブ移動を割り当て
+noremap J <C-n>
+noremap K <C-p>
 
 " jkに全ページスクロールを割り当て
 noremap j <Space>
 noremap k <S-Space>
-
-" shift+hlにタブ移動を割り当て
-noremap L <C-n>
-noremap H <C-p>
 
 " hlにページのバック/フォアードを割り当て
 noremap h <C-o>
