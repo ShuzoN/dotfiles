@@ -427,6 +427,12 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
  " --- vim-go ---
  NeoBundle 'fatih/vim-go'
+ NeoBundleLazy 'fatih/vim-go', {
+       \ 'autoload' : { 'filetypes' : 'go'  }
+       \ }
+ let g:go_highlight_functions = 1
+ let g:go_highlight_methods = 1
+ let g:go_highlight_structs = 1
 
  call neobundle#end()
 
