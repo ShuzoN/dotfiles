@@ -434,6 +434,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  let g:go_highlight_methods = 1
  let g:go_highlight_structs = 1
 
+ " --- editorconfig ---
+ NeoBundle 'editorconfig/editorconfig-vim'
+
  call neobundle#end()
 
  " -------描画設定---------
