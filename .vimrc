@@ -436,6 +436,11 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  let g:go_highlight_methods = 1
  let g:go_highlight_structs = 1
 
+ " --- json 回り ---
+ NeoBundle 'Quramy/vison'
+ autocmd BufRead,BufNewFile package.json Vison
+ autocmd BufRead,BufNewFile .bowerrc Vison bowerrc.json
+
  " --- editorconfig ---
  NeoBundle 'editorconfig/editorconfig-vim'
 
