@@ -434,6 +434,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  " --- editor config ---
  NeoBundle 'editorconfig/editorconfig-vim'
 
+ NeoBundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
  call neobundle#end()
 
  " -------描画設定---------
