@@ -45,8 +45,10 @@
  " ==============================================
    "           NeoBundle プラグイン
  " ==============================================
+ " ねおばんどる
  NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'h1mesuke/vim-alignta' 
+
+ " vimで非同期処理を実現する
  NeoBundle 'Shougo/vimproc.vim', {
  \ 'build' : {
  \     'windows' : 'tools\\update-dll-mingw',
@@ -56,12 +58,16 @@
  \     'unix' : 'gmake',
  \    },
  \ }
+ " markdownのテーブルなどを整形するプラグイン
+ NeoBundle 'h1mesuke/vim-alignta' 
  " === scssのシンタックスハイライト ========
  NeoBundle 'cakebaker/scss-syntax.vim'
  au BufRead,BufNewFile *.scss set filetype=scss.css
 
  " === Railsプロジェクト間のfile移動をワンアクションで可能にする ===
+ " vim rails
  NeoBundle 'tpope/vim-rails'
+ " コマンドを短縮する
  NeoBundle 'tyru/vim-altercmd' 
  " call  altercmd#load()
  au BufRead *.* AlterCommand ni NeoBundleInstall
@@ -160,11 +166,15 @@
  let g:vimrubocop_config = '/usr/local/project/.rubocop.yml'
  " 入力補完機能
  NeoBundle 'Shougo/neocomplcache'
+ " vim の スニペットを提供するプラグイン
  NeoBundle 'Shougo/neosnippet'
+ " newsnipeetの拡張? 
  NeoBundle 'Shougo/neosnippet-snippets'
 
  " ---- vimで シソーラスの利用 ----
+ " CodicをUniteで利用
  NeoBundle 'rhysd/unite-codic.vim'
+ " Codicをvimで利用
  NeoBundle 'koron/codic-vim'
  nnoremap <silent> <Space>c :Codic 
 
@@ -184,6 +194,7 @@
  let g:gitgutter_sign_added = '+'
  let g:gitgutter_sign_modified= '→'
  let g:gitgutter_sign_removed = 'x'
+
  " status lineにgitのブランチを表示
  NeoBundle 'itchyny/lightline.vim'
  let g:lightline = {
@@ -255,16 +266,26 @@
  " gitスキーマをhttpsスキーマに変換
  let g:neobundle_default_git_protocol='https'
 
- " ------------ 補完機能の設定   --------------
- " Rubyの補完
+ " -------------------------------
+ " Rsense
  " -------------------------------
  " コード補完
  NeoBundle 'Shougo/neocomplete.vim'
- NeoBundle 'marcus/rsense'
- NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', { 'autoload' : {
-   \ 'insert' : 1,
-   \ 'filetypes': 'ruby',
-   \ }}
+ " rubyの補完
+ NeoBundle 'NigoroJr/rsense'
+ " vimでrsenceを使う
+ NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', { 'autoload' : { 
+  \ 'insert' : 1, 'filetypes': 'ruby', }}
+
+ " 補完の設定
+ if !exists('g:neocomplete#force_omni_input_patterns')
+   let g:neocomplete#force_omni_input_patterns = {}
+ endif
+ let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+ let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
+ let g:rsenseUseOmniFunc = 1
+ " --------------------------------
+
  " 静的解析
  NeoBundle 'scrooloose/syntastic'
  " ドキュメント参照
@@ -274,12 +295,6 @@
  NeoBundle 'szw/vim-tags'
  " 自動で閉じる
  NeoBundle 'tpope/vim-endwise'
- " -------------------------------
- " Rsense
- " -------------------------------
- let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
- let g:rsenseUseOmniFunc = 1
- " --------------------------------
  " neocomplete.vim
  " --------------------------------
  let g:acp_enableAtStartup = 0
@@ -302,8 +317,6 @@
  if !exists('g:neocomplete#force_omni_input_patterns')
    let g:neocomplete#force_omni_input_patterns = {}
  endif
- let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
- let g:neocomplcache_skip_auto_completion_time = '0.6'
  " vim-railsに対応
  let g:neocomplcache_force_overwrite_completefunc=1
  let g:neocomplete#sources#dictionary#dictionaries = {
@@ -321,6 +334,7 @@
  " " railsプロジェクトのみ--railsオプションをつける
  " au FileType ruby if exists('b:rails_root') |
  "   \ let b:syntastic_ruby_rubocop_options = '--rails' | endif
+ "
  " -----------vimの補完キーバインド ----------------
  " オムニ補完をSpace-cに当てる
  imap <C-c> <C-x><C-o>
@@ -331,7 +345,7 @@
  endfunction
  " <C-h>や<BS>を押した時に確実にポップアップを削除
  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
- " tabで補完候補の選択を行う
+ " C-j,kで補完候補の選択を行う
  inoremap <expr><C-j> pumvisible() ? "\<Down>" : "\<TAB>"
  inoremap <expr><C-k> pumvisible() ? "\<Up>" : "\<S-TAB>"
  " 補完をキャンセル
@@ -396,8 +410,6 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  set number relativenumber 
  " indentの設定
  filetype plugin indent on
- " tplファイルのindent設定
- au BufRead,BufNewFile *.tpl setl ft=gohtmltmpl
 
  " soft tabを有効に
  set expandtab
@@ -408,25 +420,17 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  " 編集行の番号にアンダーライン
  set cursorline
 
- " ----- javascript のシンタックス ----
- au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
- NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
- NeoBundle 'pangloss/vim-javascript'
-
  " --- Undo treeをグラフィカル表示 ---
- " Gundo.vim
- nnoremap U :GundoToggle<CR>
- NeoBundle 'sjl/gundo.vim'
  " --- vimでコードを実行 ---
  NeoBundle 'thinca/vim-quickrun'
  nnoremap Q :QuickRun ruby<CR>
+
  " --- キャメルケース<=>スネークケースを切り替える ---
  NeoBundle 'kana/vim-operator-user'
  NeoBundle 'tyru/operator-camelize.vim'
  map <Space>p <plug>(operator-camelize-toggle)
 
- " --- vim-go ---
- NeoBundle 'fatih/vim-go'
+ " --- go 周り ---
  NeoBundleLazy 'fatih/vim-go', {
        \ 'autoload' : { 'filetypes' : 'go'  }
        \ }
@@ -435,13 +439,20 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  let g:go_highlight_functions = 1
  let g:go_highlight_methods = 1
  let g:go_highlight_structs = 1
+ " tplファイルのindent設定
+ au BufRead,BufNewFile *.tpl setl ft=gohtmltmpl
 
- " --- json 回り ---
+ " ----- javascript のシンタックス ----
+ au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+ NeoBundle 'pangloss/vim-javascript'
+
+ " --- json 周り ---
  NeoBundle 'Quramy/vison'
  autocmd BufRead,BufNewFile package.json Vison
  autocmd BufRead,BufNewFile .bowerrc Vison bowerrc.json
 
- " --- editorconfig ---
+ " --- editor config ---
  NeoBundle 'editorconfig/editorconfig-vim'
 
  call neobundle#end()
