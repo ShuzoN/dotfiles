@@ -131,6 +131,7 @@ alias ls='ls -GF'
 alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
 alias j="autojump"
+alias -g vim="nvim"
 
 # git alias
 alias -g gst='git status'
@@ -163,6 +164,7 @@ alias -g glgp='git log -p'
 alias -g gbr='git branch'
 alias -g gbrd='git branch -d'
 alias -g gbrD='git branch -D'
+alias -g grf='git reflog'
 
 # tmux alias
 alias -g tls='tmux ls'
