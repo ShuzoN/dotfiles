@@ -39,8 +39,8 @@
  filetype off
 
  if has('vim_starting')
-   set runtimepath+=~/.vim/bundle/neobundle.vim
-   call neobundle#begin(expand('~/.vim/bundle'))
+   set runtimepath+=~/dotfiles/vim/.vim/bundle/neobundle.vim
+   call neobundle#begin(expand('~/dotfiles/vim/.vim/bundle'))
  endif
  " ==============================================
    "           NeoBundle プラグイン
