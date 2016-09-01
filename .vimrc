@@ -1,38 +1,10 @@
+
  set nocompatible " NeoBundleの設定
 
  " クリップボードを使用可能に
  set clipboard+=unnamed
  " backspaceを有効にする
  set backspace=indent,eol,start
- " ---------------key bind --------------
- " 間違えやすい, 使わないバインドを無効化
- nmap <C-z> <Nop>
- nmap <C-b> <Nop>
- nmap <C-f> <Nop>
- nmap <C-j> <Down>
- nmap <C-k> <Up>
- nmap <C-h> <Nop>
- nmap <C-l> <Right>
- imap <C-j> <Nop>
- imap <C-k> <Nop>
- imap <C-h> <BS>
- imap <C-l> <Nop>
- nmap <C-n> <Nop>
- nmap <C-p> <Nop>
- nmap <C-c> <Nop>
- imap <C-c> <Nop>
- nmap <C-m> <Nop>
- nmap <C-\> <Nop>
- nmap <S-h> <Nop>
- nmap <S-l> <Nop>
- nmap Q <Nop>
- nmap <Space>c <Nop>
- nmap U <Nop>
- nmap ZQ <Nop>
- " コロンとセミコロンの入れ替え
- noremap ; :
- " enter で改行挿入
- nmap <CR> o<ESC>
  " 複数キー入力待機は400ms, キーコード待は75ms
  set timeout timeoutlen=400 ttimeoutlen=75
 
@@ -186,6 +158,22 @@
 
  " 複数行をコメントアウト可能にする
  NeoBundle 'tyru/caw.vim.git'
+
+  " Ctrl + p でコメントアウトと解除
+ nmap <C-p> <Plug>(caw:hatpos:toggle)
+ vmap <C-p> <Plug>(caw:hatpos:toggle)
+
+ " ====ウィンドウ操作のキーマップ==== 
+ " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-_> :split<Enter>
+nnoremap <silent> <C-\> :vsplit<Enter>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+
+
  " htmlタグの自動補完(erbファイルに適応)
  augroup MyXML
    autocmd!
@@ -342,8 +330,6 @@
  "   \ let b:syntastic_ruby_rubocop_options = '--rails' | endif
  "
  " -----------vimの補完キーバインド ----------------
- " オムニ補完をSpace-cに当てる
- imap <C-c> <C-x><C-o>
  " 改行で補完ウィンドを閉じる
  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
  function! s:my_cr_function()
@@ -360,9 +346,7 @@
  inoremap <expr><C-y>  neocomplcache#close_popup()
  " 候補をキャンセルし、ポップアップを閉じる
  inoremap <expr><ESC>  neocomplcache#cancel_popup()
- " Ctrl + p でコメントアウトと解除
- nmap <C-p> <Plug>(caw:hatpos:toggle)
- vmap <C-p> <Plug>(caw:hatpos:toggle)
+
  
  " Markdownのソースに色付
  let g:markdown_fenced_languages = [
@@ -389,16 +373,6 @@
  highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
        augroup END
 
- " ====ウィンドウ操作のキーマップ==== 
- " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-_> :split<Enter>
-nnoremap <silent> <C-\> :vsplit<Enter>
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
  " ------------ ステータスバー --------------
  " ステータスバーの表示
  set laststatus=2
@@ -409,7 +383,6 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
  " <ESC>後にすぐ色が適応されない場合の対策
  inoremap <silent> <ESC> <ESC>
  inoremap <silent> <C-[> <ESC>
-
 
  " ---------- 表示設定 -----------
  " 行番号を相対位置表示
