@@ -1,13 +1,6 @@
 
  set nocompatible " NeoBundleの設定
 
- " クリップボードを使用可能に
- set clipboard+=unnamed
- " backspaceを有効にする
- set backspace=indent,eol,start
- " 複数キー入力待機は400ms, キーコード待は75ms
- set timeout timeoutlen=400 ttimeoutlen=75
-
  filetype off
 
  if has('vim_starting')
@@ -360,11 +353,6 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
        \  'xml',
        \]
 
- " / による検索で
- " 小文字のみの入力では大文字小文字を区別しない
- " 大文字のみの入力では大文字小文字を区別する
- set smartcase
- set ignorecase
  " アクティブウィンドウに限りカーソル行(列)を強調する
  augroup vimrc_set_cursorline_only_active_window
    autocmd!
@@ -372,32 +360,6 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
        autocmd WinLeave * setlocal nocursorline
  highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
        augroup END
-
- " ------------ ステータスバー --------------
- " ステータスバーの表示
- set laststatus=2
- " ノーマルモードとinsertモードでステータスバーの色を変える
- " normal mode : lightblue / insert mode: green
- au InsertEnter * hi StatusLine ctermfg=Black ctermbg=lightblue cterm=none 
- au InsertLeave * hi StatusLine ctermfg=Black ctermbg=Green     cterm=none
- " <ESC>後にすぐ色が適応されない場合の対策
- inoremap <silent> <ESC> <ESC>
- inoremap <silent> <C-[> <ESC>
-
- " ---------- 表示設定 -----------
- " 行番号を相対位置表示
- set number relativenumber 
- " indentの設定
- filetype plugin indent on
-
- " soft tabを有効に
- set expandtab
- " オートインデントを有効に
- set autoindent
- " インデント幅を2文字に
- set tabstop=2 shiftwidth=2 softtabstop=2
- " 編集行の番号にアンダーライン
- set cursorline
 
  " --- Undo treeをグラフィカル表示 ---
  " --- vimでコードを実行 ---
