@@ -9,7 +9,7 @@
  nmap <C-l> <Right>
  imap <C-j> <Nop>
  imap <C-k> <Nop>
- imap <C-h> <BS>
+ imap <C-h> <Nop>
  imap <C-l> <Nop>
  nmap <C-n> <Nop>
  nmap <C-p> <Nop>
@@ -32,4 +32,3 @@
 
  " オムニ補完をSpace-cに当てる
  imap <C-c> <C-x><C-o>
-
