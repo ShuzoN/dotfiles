@@ -19,3 +19,12 @@
  " ESCキーを2回押すと終了する
  au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 
+ " grep検索
+ nnoremap <silent> [Unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+ " unite grepにhw(highway)を使う
+ if executable('hw')
+   let g:unite_source_grep_command = 'hw'
+   let g:unite_source_grep_default_opts = '--no-group --no-color'
+   let g:unite_source_grep_recursive_opt = ''
+ endif
