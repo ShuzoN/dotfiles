@@ -1,14 +1,4 @@
   "-----------()系統の補完------------
-  " defに対しendを自動補完
-  " NeoBundle 'tpope/vim-endwise'
-  function! MyInsertBracket(lbrackets, rbracket)
-    if index(a:lbrackets, getline('.')[col('.') - 2]) != -1
-      return a:rbracket . "\<Left>"
-    else
-      return a:rbracket
-    endif
-  endfunction
-  inoremap <expr> > MyInsertBracket(['<'], '>')
   " 対応するカッコ,def endをハイライト
   " NeoBundle 'vimtaku/hl_matchit.vim.git'
   let g:hl_matchit_enable_on_vim_startup = 1
