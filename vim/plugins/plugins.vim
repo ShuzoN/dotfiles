@@ -1,11 +1,4 @@
 
-  " アクティブウィンドウに限りカーソル行(列)を強調する
-  augroup vimrc_set_cursorline_only_active_window
-    autocmd!
-      autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
-        autocmd WinLeave * setlocal nocursorline
-  highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
-        augroup END
 
   " --- Undo treeをグラフィカル表示 ---
   " --- vimでコードを実行 ---
