@@ -1,11 +1,3 @@
-
-  " ---- vimで シソーラスの利用 ----
-  " CodicをUniteで利用
-  " NeoBundle 'rhysd/unite-codic.vim'
-  " Codicをvimで利用
-  " NeoBundle 'koron/codic-vim'
-  nnoremap <silent> <Space>c :Codic
-
   " 複数行をコメントアウト可能にする
   " NeoBundle 'tyru/caw.vim.git'
 
