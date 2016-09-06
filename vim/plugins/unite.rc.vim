@@ -20,7 +20,7 @@
  au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 
  " grep検索
- nnoremap <silent> [Unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+ nnoremap <silent> <C-g>  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
  " unite grepにhw(highway)を使う
  if executable('hw')
