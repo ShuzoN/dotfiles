@@ -12,6 +12,8 @@
   " ==============================================
   " ねおばんどる
   NeoBundle 'Shougo/neobundle.vim'
+  " gitスキーマをhttpsスキーマに変換
+  let g:neobundle_default_git_protocol='https'
 
   " vimで非同期処理を実現する
   NeoBundle 'Shougo/vimproc.vim', {

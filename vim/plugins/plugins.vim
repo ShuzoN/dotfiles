@@ -1,25 +1,3 @@
-  " htmlタグの自動補完(erbファイルに適応)
-  augroup MyXML
-    autocmd!
-    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
-  augroup END
-
-  " ------------ vim内でgitを使う -------------
-  " gitスキーマをhttpsスキーマに変換
-  let g:neobundle_default_git_protocol='https'
-
-  " 静的解析
-  " NeoBundle 'scrooloose/syntastic'
-  " ドキュメント参照
-  " NeoBundle 'thinca/vim-ref'
-  " NeoBundle 'yuku-t/vim-ref-ri'
-  " メソッド定義元へのジャンプ
-  " NeoBundle 'szw/vim-tags'
-  " 自動で閉じる
-  " NeoBundle 'tpope/vim-endwise'
-
 
   " アクティブウィンドウに限りカーソル行(列)を強調する
   augroup vimrc_set_cursorline_only_active_window
