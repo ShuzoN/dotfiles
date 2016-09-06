@@ -20,17 +20,6 @@
   " 自動で閉じる
   " NeoBundle 'tpope/vim-endwise'
 
-  " Markdownのソースに色付
-  let g:markdown_fenced_languages = [
-        \  'css',
-        \  'erb=eruby',
-        \  'javascript',
-        \  'js=javascript',
-        \  'json=javascript',
-        \  'ruby',
-        \  'sass',
-        \  'xml',
-        \]
 
   " アクティブウィンドウに限りカーソル行(列)を強調する
   augroup vimrc_set_cursorline_only_active_window
