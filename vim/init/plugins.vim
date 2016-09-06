@@ -40,6 +40,8 @@
   NeoBundle 'Shougo/unite.vim'
   " unite.vimで最近使ったファイルを表示できるようにする
   NeoBundle 'Shougo/neomru.vim'
+  " ファイル操作をサポート(depend Unite)
+  NeoBundle 'Shougo/vimfiler'
   "===========================================
   " tmuxのペイン移動をするプラグイン
   NeoBundle 'christoomey/vim-tmux-navigator'

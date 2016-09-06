@@ -1,4 +1,7 @@
 " python3 plugins
+call remote#host#RegisterPlugin('python3', '/Users/nakamura_mac/dotfiles/vim/.vim/bundle/deoplete.nvim/rplugin/python3/deoplete', [
+      \ {'sync': v:true, 'name': '_deoplete', 'type': 'function', 'opts': {}},
+     \ ])
 
 
 " ruby plugins
