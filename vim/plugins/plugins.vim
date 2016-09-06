@@ -1,38 +1,3 @@
-  " === Railsプロジェクト間のfile移動をワンアクションで可能にする ===
-  au BufRead *.* AlterCommand ni NeoBundleInstall
-  " tyru/はフォーク版, オリジナルはkana/
-  autocmd User Rails AlterCommand r R " 対応したmvcに移動
-  autocmd User Rails AlterCommand rc Rcontroller "対応するコントローラに移動
-  autocmd User Rails AlterCommand rm Rmodel  " モデルに移動
-  autocmd User Rails AlterCommand rv Rview  " ビューに移動
-  autocmd User Rails AlterCommand ra A  " テストに移動
-  " ===========  Unite.vim ===================
-  " 直感的なインタフェースを提供するプラグイン
-  " NeoBundle 'Shougo/unite.vim'
-  " unite.vimで最近使ったファイルを表示できるようにする
-  " NeoBundle 'Shougo/neomru.vim'
-  " insertモードの時 unite.vimを有効にする
-  let g:unite_enable_start_insert=0
-  " バッファ一覧
-  noremap [Unite] <Nop>
-  nmap <Space>u [Unite]
-  noremap [Unite]b :Unite buffer<CR>
-  " ファイル一覧
-  noremap [Unite]f :Unite -buffer-name=file file<CR>
-  " 最近使ったファイル一覧
-  noremap [Unite]h :Unite file_mru<CR>"
-  " sourcesを「今開いているファイルのディレクトリ」とする
-  " noremap [Unite]u :UniteWithBufferDir file -buffer-name=file<CR>
-  " ウィンドウを分割して開く
-  au FileType unite nnoremap <silent> <buffer> <expr> [Unite]s unite#do_action('split')
-  " au FileType unite inoremap <silent> <buffer> <expr> [Unite]s unite#do_action('split')
-  " ウィンドウを縦に分割して開く
-  au FileType unite nnoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
-  " au FileType unite inoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
-  " ESCキーを2回押すと終了する
-  au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-  au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
 
   "===========================================
   " tmuxのペイン移動をするプラグイン
