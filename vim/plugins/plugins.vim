@@ -66,8 +66,8 @@
   au FileType unite nnoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
   " au FileType unite inoremap <silent> <buffer> <expr> [Unite]v unite#do_action('vsplit')
   " ESCキーを2回押すと終了する
-  " au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-  " au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+  au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+  au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 
   "===========================================
@@ -157,7 +157,7 @@
  let g:tmux_navigator_no_mappings = 1
  nnoremap <silent> <C-_> :split<Enter>
  nnoremap <silent> <C-\> :vsplit<Enter>
- nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+ nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
  nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
  nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
  nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
@@ -324,7 +324,7 @@
   function! s:my_cr_function()
     return neocomplcache#smart_close_popup() . "\<CR>"
   endfunction
-  " <C-h>や<BS>を押した時に確実にポップアップを削除
+  " <BS>を押した時に確実にポップアップを削除
   inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
   " C-j,kで補完候補の選択を行う
   inoremap <expr><C-j> pumvisible() ? "\<Down>" : "\<TAB>"

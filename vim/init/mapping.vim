@@ -9,7 +9,7 @@
  nmap <C-l> <Right>
  imap <C-j> <Nop>
  imap <C-k> <Nop>
- imap <C-h> <Nop>
+ " imap <C-h> <Nop>
  imap <C-l> <Nop>
  nmap <C-n> <Nop>
  nmap <C-p> <Nop>
