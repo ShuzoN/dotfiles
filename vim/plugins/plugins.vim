@@ -1,6 +1,3 @@
-
-
-  " --- Undo treeをグラフィカル表示 ---
   " --- vimでコードを実行 ---
   " NeoBundle 'thinca/vim-quickrun'
   nnoremap Q :QuickRun ruby<CR>
