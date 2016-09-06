@@ -1,14 +1,3 @@
-  " ====ウィンドウ操作のキーマップ====
-  " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
- let g:tmux_navigator_no_mappings = 1
- nnoremap <silent> <C-_> :split<Enter>
- nnoremap <silent> <C-\> :vsplit<Enter>
- nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
- nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
- nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
- nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
-
   " htmlタグの自動補完(erbファイルに適応)
   augroup MyXML
     autocmd!
@@ -16,13 +5,6 @@
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
   augroup END
-  "----------------------------
-  " gitの差分を表示する
-  " NeoBundle 'airblade/vim-gitgutter'
-  " vim-gitgutter
-  let g:gitgutter_sign_added = '+'
-  let g:gitgutter_sign_modified= '→'
-  let g:gitgutter_sign_removed = 'x'
 
   " status lineにgitのブランチを表示
   " NeoBundle 'itchyny/lightline.vim'
