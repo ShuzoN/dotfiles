@@ -1,10 +1,3 @@
-  " 複数行をコメントアウト可能にする
-  " NeoBundle 'tyru/caw.vim.git'
-
-   " Ctrl + p でコメントアウトと解除
-  nmap <C-p> <Plug>(caw:hatpos:toggle)
-  vmap <C-p> <Plug>(caw:hatpos:toggle)
-
   " ====ウィンドウ操作のキーマップ====
   " http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
  let g:tmux_navigator_no_mappings = 1
