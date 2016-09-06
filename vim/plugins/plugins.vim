@@ -1,28 +1,3 @@
-
-  "===========================================
-  " tmuxのペイン移動をするプラグイン
-  " NeoBundle 'christoomey/vim-tmux-navigator'
-
-  " 見出し・関数にジャンプ
-  " NeoBundle 'h1mesuke/unite-outline'
-  " テキスト整形ツール
-  " NeoBundle 'Align'
-  " vimのカラースキームsolarizedの導入
-  " NeoBundle 'altercation/vim-colors-solarized'
-
-  " ------------clever-f--------------
-  " fによる検索を拡張する
-  " f{char} : 行内のcharを検索する
-  " f,Fで検索結果をnext,backする
-  " NeoBundle 'rhysd/clever-f.vim'
-  " 大文字小文字を無視する
-  let g:clever_f_smart_case=1
-  " 日本語に対応
-  let g:clever_f_use_migemo=1
-  " カーソル移動がマッチの方向に依存しなくなる
-  let g:clever_f_fix_key_direction=1
-  " 現在行のみマッチ
-  let g:clever_f_across_no_line=1
   " ------------easymotion-------------
   " 画面内を2keyでカーソル移動
   " http://haya14busa.com/mastering-vim-easymotion/
