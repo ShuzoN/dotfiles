@@ -1,11 +1,3 @@
-  "-----------()系統の補完------------
-  " 対応するカッコ,def endをハイライト
-  " NeoBundle 'vimtaku/hl_matchit.vim.git'
-  let g:hl_matchit_enable_on_vim_startup = 1
-  let g:hl_matchit_hl_groupname = 'Title'
-  let g:hl_matchit_allow_ft ='html\|vim\|ruby\|sh'
-  source $VIMRUNTIME/macros/matchit.vim
-  " -----------------------------------------
   " 文法チェック機能追加
   " NeoBundle 'ngmy/vim-rubocop'
   let g:vimrubocop_config = '/usr/local/project/.rubocop.yml'
