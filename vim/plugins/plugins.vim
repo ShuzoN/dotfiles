@@ -1,6 +1,3 @@
-  " === scssのシンタックスハイライト ========
-  au BufRead,BufNewFile *.scss set filetype=scss.css
-
   " === Railsプロジェクト間のfile移動をワンアクションで可能にする ===
   au BufRead *.* AlterCommand ni NeoBundleInstall
   " tyru/はフォーク版, オリジナルはkana/
@@ -340,11 +337,7 @@
   let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
   let g:go_highlight_structs = 1
-  " tplファイルのindent設定
-  au BufRead,BufNewFile *.tpl setl ft=gohtmltmpl
 
-  " ----- javascript のシンタックス ----
-  au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
   " NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
   " NeoBundle 'pangloss/vim-javascript'
 
