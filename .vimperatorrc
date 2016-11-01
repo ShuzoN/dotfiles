@@ -45,6 +45,8 @@ hi Hint z-index:5000; font-family:Menlo; font-size:14px; color:white; background
 " g o g で現在タブでgithubを開く
 " g n g で新規タブでgithubを開く
 
+" go + qmark:  current tab
+" gn + qmark:  new tab
 qmark g https://github.com/ShuzoN
 qmark m https://mail.google.com/
 qmark c https://calendar.google.com/calendar/
@@ -52,6 +54,7 @@ qmark n http://news.yahoo.co.jp/
 qmark t https://trello.com/
 qmark y https://www.youtube.com/ 
 qmark b http://namu-r21.hatenablog.com/
+qmark r https://docs.ruby-lang.org/ja/2.2.0/library/_builtin.html
 " ---------------
 
 " ブラウザ上でExモードを起動し,
