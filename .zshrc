@@ -173,6 +173,9 @@ alias -g tat='tmux a -t'
 alias -g trn='tmux rename-session -t'
 alias -g tkl='tmux kill-session -t'
 
+# rubyの補完に使うツールのパス
+# ctags https://ja.wikipedia.org/wiki/Ctags 
+alias ctags="`brew --prefix`/bin/ctags"
 #--------- ヒストリの設定 ---------
 source ~/zaw/zaw.zsh #zawと呼ばれるプラグイン
 #ヒストリの保存場所

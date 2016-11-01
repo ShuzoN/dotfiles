@@ -26,6 +26,15 @@
  " 編集行の番号にアンダーライン
  set cursorline
 
+ " vim内部で使われる文字エンコーディングをutf-8に設定する
+ set encoding=utf-8
+
+ " 想定される改行コードの指定する
+ set fileformats=unix,dos,mac
+
+ " 自動コメントアウトを無効化
+ au FileType * setlocal formatoptions-=ro
+
  " ------------ ステータスバー --------------
  " ステータスバーの表示
  set laststatus=2

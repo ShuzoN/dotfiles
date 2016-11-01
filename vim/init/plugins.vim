@@ -71,8 +71,6 @@
   " -----------------------------------------
   " 文法チェック機能追加
   NeoBundle 'ngmy/vim-rubocop'
-  " 入力補完機能
-  NeoBundle 'Shougo/neocomplcache'
   " vim の スニペットを提供するプラグイン
   NeoBundle 'Shougo/neosnippet'
   " newsnipeetの拡張?
@@ -92,16 +90,21 @@
 
   " status lineにgitのブランチを表示
   NeoBundle 'itchyny/lightline.vim'
+
+  " -------------------------------
+  " コード補完
+  " -------------------------------
+  " NeoBundle 'Shougo/neocomplcache'
+  " NeoBundle 'Shougo/neocomplete.vim'
+  NeoBundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " -------------------------------
   " Rsense
   " -------------------------------
-  " コード補完
-  NeoBundle 'Shougo/neocomplete.vim'
   " rubyの補完
-  NeoBundle 'NigoroJr/rsense'
+  NeoBundle 'marcus/rsense'
   " vimでrsenceを使う
-  NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', { 'autoload' : {
-   \ 'insert' : 1, 'filetypes': 'ruby', }}
+  " NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', { 'autoload' : {
+  "  \ 'insert' : 1, 'filetypes': 'ruby', }}
   " --------------------------------
   " 静的解析
   NeoBundle 'scrooloose/syntastic'
@@ -133,7 +136,13 @@
   " --- editor config ---
   NeoBundle 'editorconfig/editorconfig-vim'
 
-  NeoBundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   call neobundle#end()
 
   NeoBundleCheck
+
+  let g:deoplete#enable_at_startup = 1 
+  " With deoplete.nvim
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
+  let g:deoplete#sources#omni#input_patterns = {
+        \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+        \}
