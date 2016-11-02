@@ -136,6 +136,9 @@
   " --- editor config ---
   NeoBundle 'editorconfig/editorconfig-vim'
 
+  " --- benchmark ---
+  NeoBundle 'mattn/benchvimrc-vim'
+
   call neobundle#end()
 
   NeoBundleCheck

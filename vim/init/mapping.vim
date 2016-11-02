@@ -30,5 +30,10 @@
  " enter で改行挿入
  nmap <CR> o<ESC>
 
- " オムニ補完をSpace-cに当てる
- imap <C-c> <C-x><C-o>
+ " 補完をSpace-cに当てる
+ imap <C-c> <C-n><C-p>
+
+ nmap <S-l> <C-]>
+ nmap <S-h> <C-t>
+ nmap <Space><S-l> :tjump<CR>
+
