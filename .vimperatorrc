@@ -22,6 +22,9 @@ noremap l <C-i>
 lmap <C-j> <Tab> 
 lmap <C-k> <S-Tab> 
 
+noremap D d
+noremap d <Nop>
+
 " ---------------
 " [ or ] で次のページ, 前のページと書かれたリンクに遷移する
 set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,次へ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
