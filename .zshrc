@@ -131,7 +131,6 @@ alias ls='ls -GF'
 alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
 alias j="autojump"
-alias -g vim="nvim"
 alias -g marked2="open -a 'Marked 2'"
 
 # git alias

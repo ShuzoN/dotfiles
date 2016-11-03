@@ -95,26 +95,31 @@
   " コード補完
   " -------------------------------
   " NeoBundle 'Shougo/neocomplcache'
-  " NeoBundle 'Shougo/neocomplete.vim'
-  NeoBundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  NeoBundle 'Shougo/neocomplete.vim'
+  " NeoBundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " -------------------------------
   " Rsense
   " -------------------------------
   " rubyの補完
-  NeoBundle 'marcus/rsense'
+  " NeoBundleLazy 'marcus/rsense', { 'autoload' : {
+  "  \ 'insert' : 1, 'filetypes': 'ruby', }}
   " vimでrsenceを使う
   " NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', { 'autoload' : {
   "  \ 'insert' : 1, 'filetypes': 'ruby', }}
   " --------------------------------
   " 静的解析
-  NeoBundle 'scrooloose/syntastic'
+  NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : {
+   \ 'filetypes': 'ruby', }}
   " ドキュメント参照
   NeoBundle 'thinca/vim-ref'
   NeoBundle 'yuku-t/vim-ref-ri'
   " メソッド定義元へのジャンプ
   NeoBundle 'szw/vim-tags'
   " 自動で閉じる
-  NeoBundle 'tpope/vim-endwise'
+  NeoBundleLazy 'tpope/vim-endwise', { 'autoload' : {
+   \ 'insert' : 1, 'filetypes': 'ruby', }}
+  " rubyのローカル変数をハイライト
+  NeoBundle 'todesking/ruby_hl_lvar.vim'
   " --- vimでコードを実行 ---
   NeoBundle 'thinca/vim-quickrun'
 
