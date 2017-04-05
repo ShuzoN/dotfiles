@@ -3,21 +3,20 @@ export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export DOTSDIR="$HOME/dotfiles"
 # NUTFes/group_managerに必要な環境変数を設定
-source "$DOTSDIR/group_manager.sh"
+# source "$DOTSDIR/group_manager.sh"
 # twitter apiに必要な環境変数を設定
-export RESEARCH_DIR=${HOME}/research
-source "$RESEARCH_DIR/env_val_for_twitter.sh"
+# export RESEARCH_DIR=${HOME}/research
+# source "$RESEARCH_DIR/env_val_for_twitter.sh"
 # rbenvのパス
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+# export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 #rbenvの初期化設定
-eval "$(rbenv init -)" 
+# eval "$(rbenv init -)" 
 # NeoVimの設定ファイルのパス
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
 export PATH="/usr/local/heroku/bin:$PATH"
 
 export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.4-1_1/lib/pkgconfig
-
 
 # bindkey
 bindkey -r '^H'
@@ -216,7 +215,7 @@ bindkey '^t' zaw-tmux
 
 #--------------------------------------
 # ネットワークプロキシの設定
-source "$DOTSDIR/set_proxy_by_dns.sh"
+# source "$DOTSDIR/set_proxy_by_dns.sh"
 # export http_proxy=http://proxy.nagaokaut.ac.jp:8080
 # export http_proxy=""
 # export https_proxy=$http_proxy

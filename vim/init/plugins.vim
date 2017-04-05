@@ -1,9 +1,14 @@
 " vim pluginのロード
+" Neobundle のインストールはこれをうつ
+" git clone https://github.com/Shougo/neobundle.vim ~/dotfiles/vim/.vim/bundle/neobundle.vim
 
   filetype off
 
   if has('vim_starting')
     set runtimepath+=~/dotfiles/vim/.vim/bundle/neobundle.vim
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+
     call neobundle#begin(expand('~/dotfiles/vim/.vim/bundle'))
   endif
 
