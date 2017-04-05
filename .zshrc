@@ -175,7 +175,7 @@ alias -g tkl='tmux kill-session -t'
 # ctags https://ja.wikipedia.org/wiki/Ctags 
 alias ctags="`brew --prefix`/bin/ctags"
 #--------- ヒストリの設定 ---------
-source ~/zaw/zaw.zsh #zawと呼ばれるプラグイン
+source ~/dotfiles/zaw/zaw.zsh #zawと呼ばれるプラグイン
 #ヒストリの保存場所
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
