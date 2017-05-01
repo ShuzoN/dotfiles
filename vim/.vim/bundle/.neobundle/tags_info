@@ -27,6 +27,7 @@ vim-gitgutter
 vim-go
 vim-javascript
 vim-javascript-syntax
+vim-json
 vim-operator-user
 vim-quickrun
 vim-rails
@@ -37,4 +38,3 @@ vim-tags
 vim-tmux-navigator
 vimfiler
 vimproc.vim
-vison

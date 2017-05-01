@@ -140,14 +140,13 @@
   NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
   NeoBundle 'pangloss/vim-javascript'
 
-  " --- json 周り ---
-  NeoBundle 'Quramy/vison'
-
   " --- editor config ---
   NeoBundle 'editorconfig/editorconfig-vim'
 
   " --- benchmark ---
   NeoBundle 'mattn/benchvimrc-vim'
+  " --- format json ---
+  NeoBundle 'elzr/vim-json'
 
   call neobundle#end()
 
