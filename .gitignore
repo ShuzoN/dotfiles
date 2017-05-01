@@ -1,3 +1,8 @@
 bin/twitter_authentication.sh
 group_manager_pw.sh
 group_manager_email.sh
+vim/.vim/bundle/
+composer/
+configstore
+fish
+
