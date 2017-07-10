@@ -129,9 +129,8 @@ alias -g G='| grep'
 alias ls='ls -GF'
 alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
-alias j="autojump"
-alias -g marked2="open -a 'Marked 2'"
-alias date="gdate" # dateをlinuxに合わせる
+alias -g date='gdate' # dateをlinuxに合わせる
+alias j='autojump'
 
 # git alias
 alias -g gst='git status'
