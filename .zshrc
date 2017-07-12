@@ -130,6 +130,7 @@ alias ls='ls -GF'
 alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
 alias -g date='gdate' # dateをlinuxに合わせる
+alias -g sed='gsed' # gnu-sed :  brew install gnu-sed
 alias j='autojump'
 
 # git alias
