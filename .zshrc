@@ -263,5 +263,5 @@ export PGDATA=/usr/local/var/postgres
 alias irb='pry'
 
 # 言語のライブラリpath
-export GOPATH="/Users/nakamura_mac/workspace/voyage/wiki"
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
