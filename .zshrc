@@ -166,6 +166,7 @@ alias -g gbr='git branch'
 alias -g gbrd='git branch -d'
 alias -g gbrD='git branch -D'
 alias -g grf='git reflog'
+alias gg="git grep --break --heading"
 
 # tmux alias
 alias -g tls='tmux ls'
@@ -226,32 +227,23 @@ bindkey '^t' zaw-tmux
 # git config --global http.proxy proxy.nagaokaut.ac.jp:8080
 # git config --global https.proxy proxy.nagaokaut.ac.jp:8080
 
-#####################  git 機能 ########################
-#何も入力せずenterで ls, git status, git branch
 function do_enter() {
-if [ -n "$BUFFER" ]; then
-  zle accept-line
+  if [ -n "$BUFFER" ]; then
+    zle accept-line
+    return 0
+  fi
+  echo
+  ls -a
+  zle reset-prompt
   return 0
-fi
-echo
-echo -e "\e[0;33m--- git branch ---\e[0m"
-git branch
-echo -e "\e[0;33m--- git status ---\e[0m"
-git status -sb
-if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-  git status -sb
-fi
-zle reset-prompt
-return 0
 }
 zle -N do_enter
 bindkey '^m' do_enter
 
+#####################  git 機能 ########################
 #hubコマンドをgitコマンドとしてエイリアス(hubはgitの拡張ライブラリ)
 eval "$(hub alias -s)"
 
-# git grep
-alias gg="git grep --break --heading"
 
 #postgresqlのパス設定
 export PGDATA=/usr/local/var/postgres
