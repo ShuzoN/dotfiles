@@ -181,8 +181,8 @@ alias ctags="`brew --prefix`/bin/ctags"
 source ~/dotfiles/zaw/zaw.zsh #zawと呼ばれるプラグイン
 #ヒストリの保存場所
 HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=1000
+SAVEHIST=10000
 function mkcd(){mkdir -p $1 && cd $1}
 # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
 setopt hist_ignore_all_dups
