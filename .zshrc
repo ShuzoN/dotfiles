@@ -153,6 +153,7 @@ alias -g gcmm='git commit -m'
 alias -g gcma='git commit --amend'
 alias -g gpl='git pull'
 alias -g gps='git push'
+alias -g gpso='git push origin'
 alias -g grb='git rebase'
 alias -g grbi='git rebase -i'
 alias -g grv='git revert'
@@ -181,7 +182,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 source ~/dotfiles/zaw/zaw.zsh #zawと呼ばれるプラグイン
 #ヒストリの保存場所
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=10000
 function mkcd(){mkdir -p $1 && cd $1}
 # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
