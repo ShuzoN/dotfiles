@@ -259,3 +259,7 @@ alias irb='pry'
 # 言語のライブラリpath
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+# ホストでターミナルの色を変える
+alias ssh='~/dotfiles/bin/ssh-iterm-setting'
+
