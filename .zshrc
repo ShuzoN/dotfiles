@@ -127,6 +127,7 @@ setopt interactive_comments
 alias -g L='| less'
 alias -g G='| grep'
 alias ls='ls -GF'
+alias ll='ls -l'
 alias -g curl='curl -tlsv1'
 alias -g pyg='pygmentize'
 alias -g date='gdate' # dateをlinuxに合わせる
