@@ -169,6 +169,8 @@ alias -g gbr='git branch'
 alias -g gbrd='git branch -d'
 alias -g gbrD='git branch -D'
 alias -g grf='git reflog'
+alias -g gop='git-open'
+alias -g gopi='git-open --issue'
 alias gg="git grep --break --heading"
 
 # tmux alias
