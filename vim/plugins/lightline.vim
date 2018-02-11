@@ -21,6 +21,7 @@ let g:lightline = {
       \ 'fileformat' : 'MyFileformat',
       \ 'filetype' : 'MyFiletype',
       \ 'fileencoding' : 'MyFileencoding',
+      \ 'colorscheme': 'tender',
       \ 'mode' : 'MyMode',
       \ }
       \ }

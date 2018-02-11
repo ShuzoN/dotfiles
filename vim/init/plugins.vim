@@ -54,8 +54,8 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'h1mesuke/unite-outline'
 " テキスト整形ツール
 NeoBundle 'Align'
-" vimのカラースキームsolarizedの導入
-NeoBundle 'altercation/vim-colors-solarized'
+" vimのカラースキームの導入
+NeoBundle 'jacoborus/tender.vim'
 
 " ------------clever-f--------------
 " fによる検索を拡張する
