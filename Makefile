@@ -8,7 +8,7 @@ ZSH_PATH=$(shell which zsh)
 install: 
 	$(MAKE) homebrew_install
 	$(MAKE) fetch_dotfiles
-	$(MAKE) setup_zsh
+	$(MAKE) login_shell_to_zsh
 	$(MAKE) setup_vim
 
 homebrew_install:
