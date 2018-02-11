@@ -44,6 +44,7 @@ setup_zsh:
 	@echo "please reboot your shell"
 
 setup_git:
+	xcode-select --install
 	test -s ~/.gitconfig || echo "$$GITCONFIG" >> ~/.gitconfig
 
 setup_ssh:
