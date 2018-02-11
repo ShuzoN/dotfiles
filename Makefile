@@ -38,7 +38,7 @@ setup_vim:
 setup_zsh:
 	cat ~/.zshrc | grep "source ~/dotfiles/.zshrc" || echo "source ~/dotfiles/.zshrc" >> ~/.zshrc
 	brew install hub
-	test -d ~/dotfiles/zaw || git clone https://github.com/zsh-users/zaw.git ~/dotfiles/zaw
+	test -d ~/dotfiles/zaw || git clone git@github.com:zsh-users/zaw.git ~/dotfiles/zaw
 	rm -fr ~/.zcompdump
 	cat /etc/shells | grep "$(ZSH_PATH)" || (sudo echo "$(ZSH_PATH)" | sudo tee -a /etc/shells;  chsh -s $(ZSH_PATH))
 	@echo "please reboot your shell"
@@ -46,8 +46,7 @@ setup_zsh:
 setup_git:
 	which xcode-select || xcode-select --install
 	test -s ~/.gitconfig || echo "$$GITCONFIG" >> ~/.gitconfig
-	git clone git://github.com/altercation/vim-colors-solarized.git
-	mv vim-colors-solarized ~/dotfiles/vim/.vim/bundle/vim-colors-solarized
+	[ -d ~/dotfiles/vim/.vim/bundle/vim-colors-solarized ] || git clone git://github.com/altercation/vim-colors-solarized.git ~/dotfiles/vim/.vim/bundle/vim-colors-solarized
 
 setup_ssh:
 	[ -s ~/.ssh/id_rsa.pub ] || ssh-keygen
