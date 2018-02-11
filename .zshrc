@@ -262,3 +262,5 @@ alias irb='pry'
 # 言語のライブラリpath
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+source ~/dotfiles/.shuzon_mbp_zshrc
