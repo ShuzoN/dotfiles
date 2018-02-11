@@ -1,1 +1,0 @@
-/Users/nakamura_mac/.vimrc
