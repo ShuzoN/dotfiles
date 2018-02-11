@@ -14,13 +14,14 @@ install:
 	$(MAKE) setup_git
 	$(MAKE) fetch_dotfiles
 	$(MAKE) setup_zsh
+	$(MAKE) setup_tmux
 	$(MAKE) setup_vim
 
 homebrew_install:
 	# homebrew install
 	which brew || $(RUBY) -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	# homebrew tools install
-	brew install vim zsh git
+	brew install vim zsh git tmux
 
 fetch_dotfiles:
 	# fetch_dotfiles
@@ -53,3 +54,7 @@ setup_ssh:
 	cat ~/.ssh/id_rsa.pub
 	@echo "\n please register ssh key to your github account: https://github.com/settings/keys"
 	@echo " and you setup ssh-key, exec 'make install' again"
+
+setup_tmux:
+	brew install reattach-to-user-namespace
+	[ -s ~/.tmux.conf ] || echo "source ~/dotfiles/.tmux.conf" > ~/.tmux.conf
