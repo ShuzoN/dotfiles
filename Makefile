@@ -1,15 +1,19 @@
-# homebrew install
-
 RUBY=/usr/bin/ruby 
 ZSH_PATH=$(shell which zsh)
+define GITCONFIG
+[include]
+	path = ~/dotfiles/.gitconfig
+endef
+export GITCONFIG
 
-.PHONY: install homebrew_install
+.PHONY: install homebrew_install fetch_dotfiles setup_vim setup_zsh setup_git
 
 install: 
 	$(MAKE) homebrew_install
 	$(MAKE) fetch_dotfiles
-	$(MAKE) login_shell_to_zsh
+	$(MAKE) setup_zsh
 	$(MAKE) setup_vim
+	$(MAKE) setup_git
 
 homebrew_install:
 	# homebrew install
@@ -33,8 +37,9 @@ setup_zsh:
 	brew install hub
 	test -d ~/dotfiles/zaw || git clone https://github.com/zsh-users/zaw.git ~/dotfiles/zaw
 	rm -fr ~/.zcompdump
-
-login_shell_to_zsh: setup_zsh
 	cat /etc/shells | grep "$(ZSH_PATH)" || sudo echo "$(ZSH_PATH)" | sudo tee -a /etc/shells
 	chsh -s $(ZSH_PATH)
 	@echo "please reboot your shell"
+
+setup_git:
+	test -s ~/.gitconfig || echo "$$GITCONFIG" >> ~/.gitconfig
