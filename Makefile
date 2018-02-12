@@ -21,7 +21,7 @@ homebrew_install:
 	# homebrew install
 	which brew || $(RUBY) -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	# homebrew tools install
-	brew install vim zsh git tmux gnu-sed
+	brew install vim zsh git tmux gnu-sed jq
 
 fetch_dotfiles:
 	# fetch_dotfiles
