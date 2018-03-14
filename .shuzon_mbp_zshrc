@@ -1,5 +1,4 @@
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-export PATH="$(brew --prefix homebrew/php/php72)/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/libxml2/bin:$PATH"

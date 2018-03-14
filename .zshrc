@@ -10,7 +10,7 @@ export DOTSDIR="$HOME/dotfiles"
 # rbenvのパス
 # export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 #rbenvの初期化設定
-# eval "$(rbenv init -)" 
+eval "$(rbenv init -)" 
 # NeoVimの設定ファイルのパス
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
@@ -262,5 +262,8 @@ alias irb='pry'
 # 言語のライブラリpath
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export PHPENV_ROOT=$HOME/.phpenv
+export PATH=$PATH:$PHPENV_ROOT/bin
+eval "$(phpenv init -)"
 
 source ~/dotfiles/.shuzon_mbp_zshrc
