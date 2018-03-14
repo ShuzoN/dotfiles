@@ -8,9 +8,9 @@ export DOTSDIR="$HOME/dotfiles"
 # export RESEARCH_DIR=${HOME}/research
 # source "$RESEARCH_DIR/env_val_for_twitter.sh"
 # rbenvのパス
-# export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 #rbenvの初期化設定
-# eval "$(rbenv init -)" 
+eval "$(rbenv init -)" 
 # NeoVimの設定ファイルのパス
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
