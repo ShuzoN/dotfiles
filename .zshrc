@@ -10,7 +10,7 @@ export DOTSDIR="$HOME/dotfiles"
 # rbenvのパス
 # export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 #rbenvの初期化設定
-eval "$(rbenv init -)" 
+# eval "$(rbenv init -)" 
 # NeoVimの設定ファイルのパス
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
