@@ -15,6 +15,7 @@ eval "$(rbenv init -)"
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH
 
 export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.4-1_1/lib/pkgconfig
 
@@ -260,10 +261,14 @@ export PGDATA=/usr/local/var/postgres
 alias irb='pry'
 
 # 言語のライブラリpath
+# go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+# php
 export PHPENV_ROOT=$HOME/.phpenv
 export PATH=$PATH:$PHPENV_ROOT/bin
 eval "$(phpenv init -)"
+# js
+export PATH=$PATH:$HOME/.nodebrew/current/bin
 
 source ~/dotfiles/.shuzon_mbp_zshrc
