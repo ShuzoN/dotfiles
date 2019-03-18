@@ -7,10 +7,6 @@ export DOTSDIR="$HOME/dotfiles"
 # twitter apiに必要な環境変数を設定
 # export RESEARCH_DIR=${HOME}/research
 # source "$RESEARCH_DIR/env_val_for_twitter.sh"
-# rbenvのパス
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-#rbenvの初期化設定
-eval "$(rbenv init -)" 
 # NeoVimの設定ファイルのパス
 export XDG_CONFIG_HOME=$HOME/dotfiles
 # Heroku Toolbeltのパス
@@ -264,10 +260,6 @@ alias irb='pry'
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-# php
-export PHPENV_ROOT=$HOME/.phpenv
-export PATH=$PATH:$PHPENV_ROOT/bin
-eval "$(phpenv init -)"
 # js
 export PATH=$PATH:$HOME/.nodebrew/current/bin
 
