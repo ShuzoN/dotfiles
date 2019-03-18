@@ -39,6 +39,7 @@ setup_vim:
 setup_zsh:
 	cat ~/.zshrc | grep "source ~/dotfiles/.zshrc" || echo "source ~/dotfiles/.zshrc" >> ~/.zshrc
 	brew install hub
+	mkdir -p  ~/dotfiles/zaw
 	test -d ~/dotfiles/zaw || git clone git@github.com:zsh-users/zaw.git ~/dotfiles/zaw
 	rm -fr ~/.zcompdump
 	cat /etc/shells | grep "$(ZSH_PATH)" || (sudo echo "$(ZSH_PATH)" | sudo tee -a /etc/shells;  chsh -s $(ZSH_PATH))
