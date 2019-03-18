@@ -25,4 +25,3 @@
   linenumber = yellow
   separator = white
   match = yellow reverse
-  trustExitCode = true
