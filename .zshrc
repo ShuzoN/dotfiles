@@ -263,4 +263,8 @@ export PATH=$PATH:$GOPATH/bin
 # js
 export PATH=$PATH:$HOME/.nodebrew/current/bin
 
+alias aws-vault='/home/mitsuka/work/hr-tech-studio/terraform-supporterz/vendor/bin/aws-vault'
+
 source ~/dotfiles/.shuzon_mbp_zshrc
+
+
